@@ -1,2 +1,7 @@
 User-agent: *
-Disallow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /phpmyadmin/
+Disallow: /root/
+Disallow: /forSVG/
+Disallow: /api/

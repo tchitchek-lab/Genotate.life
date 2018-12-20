@@ -1,8 +1,8 @@
 <?php
-PARALLEL_REGIONS:100
-PARALLEL_ANNOTATIONS:8
-PARALLEL_BLAST_PROCESS:4
 USER_MODE:restricted
+PARALLEL_REGIONS:110
+PARALLEL_ANNOTATIONS:10
+PARALLEL_BLAST_PROCESS:5
 BLAST:/var/www/genotate.life/services/blast/bin/makeblastdb
 BLASTDB:/var/www/genotate.life/workspace/blastdb
 DATABASE_CONFIG:/var/www/genotate.life/workspace/config/database.config

@@ -1,0 +1,15 @@
+.btn {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	font-family: Helvetica, Arial, Sans-Serif;
+	color: lightgrey;
+	background-color: #24292e;
+	word-break: break-all;
+}
+.btn:hover img {
+	-webkit-filter: invert(100%) !important;
+}
+.header_genotate:hover {
+	color: white;
+}
