@@ -2,9 +2,9 @@
 
 The Genotate platform allows the automatic annotation of transcript sequences. 
 
-Annotations can be predicted based on sequence homology and structural analyses at both the transcript and amino acid levels. Identified annotations can be easily visualized using interactive viewers. Furthermore, users can search for transcripts having specific features among their annotation results.
+Annotations can be predicted based on sequence homology and structural analyses at both the transcript and amino acid levels. Thanks to the Genotate web plaform, identified annotations can be easily visualized using interactive viewers. Furthermore, users can search for transcripts having specific features among their annotation results.
 
-<img src="img/workflow.png"/>
+<img src="README.figures/workflow.png"/>
 
 Genotate is available at [https://genotate.life](https://genotate.life) and this README explains how to install the Genotate web plaform on a local private install for users willing to customized it.
 
@@ -17,7 +17,7 @@ Genotate is available at [https://genotate.life](https://genotate.life) and this
 # <a name="Introduction"/> 1. Introduction
 The Genotate web platform use the Genotate JAVA standalone application to identify homology and functional annotations on transcript sequences.
 
-Additionally, the Genotate web platform requires a web server, and a SQL DBMS to allow the visualization and exploration of annotation results.
+Additionally, the Genotate web platform requires a web server and a SQL DBMS to allow the visualization and exploration of annotation results.
 
 # <a name="Installation"/> 2. Installation of the Genotate web platform 
 
@@ -91,7 +91,9 @@ To install the Genotate standalone annotation please go at: [https://github.com/
 
 ## Installation of the postfix system
 
-The Genotate web plaform can notify users by emails when annotation analyses are finished. The postfix system needs to be installed using the following command:
+The Genotate web plaform can notify users by emails when annotation analyses are finished. 
+
+We  suggest to use the postfix system, which can be installed using the following command:
 ```
 apt-get install postfix
 ```
