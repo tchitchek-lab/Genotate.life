@@ -34,7 +34,7 @@ The Genotate web plafoform needs some specific subfolders to work:
  * the 'workspace/storage' folder contains the annotation analysis results files.
  * the 'workspace/config' folder contains the database.config file (with the MySQL user, pass, and the name of Genotate database).
 
-# <a name="Overview"/> 3. Installation of required software
+# <a name="Requirement"/> 3. Installation of required software
 
 ## Installation of the Apache web server and PHP
 
