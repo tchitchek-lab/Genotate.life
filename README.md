@@ -1,4 +1,4 @@
-﻿# Genotate: a web platform for automatic annotation, research and visualization of transcriptomic sequences
+﻿# Genotate.live: a web platform for the annotation and exploration of transcript sequences
 
 Genotate web platform provide automatic annotation, research, and visualization of transcriptomic sequences.
 Reference transcriptome and proteome can be selected for homology annotation, depending on the databases available.
@@ -7,7 +7,7 @@ The identified annotation for each ORF is provided by an interactive panel.
 A graph represents the sequence and identified annotations, and the annotations descriptions are available in optional panels.
 The annotated ORF can be filtered to display and compare a subset of ORF with a specific annotation.
 
-Genotate is available at [Genotate Website](http://www.genotate.life).
+Genotate is available at [https://genotate.life](https://genotate.life).
 
 
 # Table of Contents
@@ -48,33 +48,17 @@ apt install libapache2-mod-php7.0
 apt-get install php7.0-mysqli
 ```
 
-The apache virtual host file needs to be configured to allow the access to genotate by the web, available at /etc/apache2/sites-available.
+The apache virtual host file (available at /etc/apache2/sites-available) needs to be configured to allow the access to genotate by the web.
 ```
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
-    DocumentRoot /var/www/genotate/web
-    ServerName www.youraddress.life
+    DocumentRoot /var/www/genotate.life/web
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 
-www-data may not be able to launch InterproScan.
-In this case, it is necessary to reset the user www-data right with the following command.
-```
-service apache2 stop
-killall -u www-data
-userdel -f www-data
-adduser www-data
-```
-
-The transcript files and sequence files used on the website can be very large. It is necessary to change the php upload limit to allow larger file. The php.ini file can be found at /etc/php/7.0/apache2/php.ini
-```
-upload_max_filesize = 2g
-post_max_size = 2g
-```
-
-The service apache 2 can be restarted to take into account the modifications, with the following command.
+The apache server must be restarted to take into account the modifications, using the following command:
 ```
 sudo service apache2 restart
 ```
@@ -90,10 +74,11 @@ sudo apt-get install mysql-server
 sudo mysqladmin -u root password newpass -p oldpass
 ```
 
-## Installation of the Oracle Java interpeter
+## Installation of the Oracle JAVA interpeter
 
-Java is used to launch Genotate and can be downloaded at [java.com](https://www.java.com/fr/download/linux_manual.jsp).
-Please install java in services/java/bin/java.
+A JAVA interpreter is reqired to run the Genotate standalone interpreter.
+The Oracle JAVA interpreter can be downloaded at [https://www.java.com](https://www.java.com/fr/download/linux_manual.jsp).
+Please install java in the 'services/java/bin/java' folder.
 
 ## Installation of phpMyAdmin (optionally)
 
