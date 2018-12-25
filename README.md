@@ -4,6 +4,8 @@ The Genotate platform allows the automatic annotation of transcript sequences.
 
 Annotations can be predicted based on sequence homology and structural analyses at both the transcript and amino acid levels. Identified annotations can be easily visualized using interactive viewers. Furthermore, users can search for transcripts having specific features among their annotation results.
 
+<img src="img/workflow.png"/>
+
 Genotate is available at [https://genotate.life](https://genotate.life) and this README explains how to install the Genotate web plaform on a local private install for users willing to customized it.
 
 # Table of Contents
@@ -16,10 +18,6 @@ Genotate is available at [https://genotate.life](https://genotate.life) and this
 The Genotate web platform use the Genotate JAVA standalone application to identify homology and functional annotations on transcript sequences.
 
 Additionally, the Genotate web platform requires a web server, and a SQL DBMS to allow the visualization and exploration of annotation results.
-
-
-<img src="img/workflow.png"/>
-
 
 # <a name="Installation"/> 2. Installation of the Genotate web platform 
 
