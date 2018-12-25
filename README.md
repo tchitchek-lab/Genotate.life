@@ -12,18 +12,13 @@ The README explains how to install the Genotate web plaform on a local private i
 
 1. [Introduction](#Introduction)
 2. [Installation of the Genotate web platform](#Installation)
-3. [Installation requirements](#Requirement)
+3. [Installation of required software](#Requirement)
 
 # <a name="Introduction"/> 1. Introduction
 
-Genotate website allows to access automatic annotation pipeline for transcript sequence anywhere, and the access to annotated sequences for exploration.
-Genotate use an Apache server to access HTML files from the web.
+The Genotate annotation pipeline takes in input one fasta file containing a single transcript or multiple transcripts. The annotation steps and options are defined using the web interface. For each reconstructed transcript, Genotate first detects the set of all possible ORFs with the purpose of annotating them. All ORFs detected by Genotate are annotated based on: (i) their homology with other reference sequences, also named homology annotations; and (ii) the presence of peptidic functional elements on their resulting translated proteins, also named functional annotations. Homology annotations are computed based on any reference dataset of transcriptomic or proteomic sequences specified by users or available by default in Genotate. The functional annotations are computed based on a compendium of publicly available computational tools and databases specified by the user.
 
-Genotate use Genotate annotation software to annotate the transcript sequences.
-Homology annotation databases can be created and managed, using Ensembl transcriptomes and proteomes, UniProt proteomic databases, or custom sequences.
-
-Genotate searches all the ORF and annotates them using similarity to other sequences and functional domains.
-The tools parameters can be modified through the website.
+A large collection of annotation services and databases are available in Genotate. Indeed, reference transcriptomic and proteomic datasets from the NONCODE, UniRef, and Ensembl databases are available (consisting of more than 100 animal species). Additionally, multiple protein annotation software are available (consisting in around 30 different algorithms). Non-coding transcripts can also be analyzed with Genotate.
 
 The Genotate web platform use the Genotate JAVA standalone application to identify homology and functional annotations on transcript sequences.
 
@@ -51,12 +46,7 @@ The Genotate web plafoform needs some specific subfolders to work:
  * the 'workspace/storage' folder contains the annotation analysis results files.
  * the 'workspace/config' folder contains the database.config file (with the MySQL user, pass, and the name of Genotate database).
 
-Genotate can notify users by mails when annotation analyses are finished. The postfix system needs to be installed using the following command:
-```
-apt-get install postfix
-```
-
-# <a name="Overview"/> 3. Installation requirements
+# <a name="Overview"/> 3. Installation of required software
 
 ## Installation of the Apache web server and Php
 
@@ -99,16 +89,18 @@ sudo mysqladmin -u root password newpass -p oldpass
 ## Installation of the Oracle JAVA interpeter
 
 A JAVA interpreter is reqired to run the Genotate standalone interpreter.
+
 The Oracle JAVA interpreter can be downloaded at [https://www.java.com](https://www.java.com/fr/download/linux_manual.jsp).
 
 Please install the JAVA interpreter in the 'services/java/bin/java' folder.
 
 ## Installation of the genotate.jar standalone application
 
-Genotate need to be installed and configured to launch annotation from Genotate website.
+To install the Genotate standalone annotation please go at [https://github.com/tchitchek-lab/genotate.jar](https://github.com/tchitchek-lab/genotate.jar).
 
-To install Genotate annotation tool please go to [Genotate Github](https://github.com/tchitchek-lab/genotate).
+## Installation of the postfix system
 
-Any folder name and website name can be used, it will not affect genotate functions.
-The user right needs to be configured to allow apache to execute genotate, services, and create files.
-
+Genotate can notify users by mails when annotation analyses are finished. The postfix system needs to be installed using the following command:
+```
+apt-get install postfix
+```
