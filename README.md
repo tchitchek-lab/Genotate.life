@@ -7,13 +7,16 @@
 3. [Installation of required software](#Requirement)
 
 # <a name="Introduction"/> 1. Introduction
-The Genotate platform allows the automatic annotation and exploration of transcript sequences. The Genotate platform is composed of a Java standalone application and web platform.
 
-Annotations can be predicted based on sequence homology and structural analyses at both the transcript and amino acid levels. Thanks to the Genotate web plaform, identified annotations can be easily visualized using interactive viewers. Furthermore, users can search for transcripts having specific features among their annotation results.
+The Genotate platform allows the automatic annotation and exploration of transcript sequences.
+
+The Genotate platform is composed of a Java standalone application (Genotate.jar) and web platform (Genotate.life).
+
+Transcript annotations can be predicted based on sequence homology and structural analyses at both the transcript and amino acid levels. Thanks to the Genotate web plaform, identified annotations can be easily visualized using interactive viewers. Furthermore, users can search for transcripts having specific features among their annotation results.
 
 <img src="README.figures/workflow.png"/>
 
-Genotate is available at [https://genotate.life](https://genotate.life) and this README explains how to install the Genotate web plaform on local private servers for users willing to customized it.
+Genotate is available at [https://genotate.life](https://genotate.life) and this README explains how to install the Genotate web plaform on local private servers for users willing to customize it.
 
 # <a name="Installation"/> 2. Installation of the Genotate web platform 
 
