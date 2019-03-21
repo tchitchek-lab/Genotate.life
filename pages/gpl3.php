@@ -352,7 +352,7 @@
     been installed in ROM).</p>
 
 <p>The requirement to provide Installation Information does not include a
-    requirement to continue to provide support service, warranty, or updates
+    requirement to continue to provide support algorithm, warranty, or updates
     for a work that has been modified or installed by the recipient, or for
     the User Product in which it has been modified or installed. Access to a
     network may be denied when the modification itself materially and
@@ -407,7 +407,7 @@
     </li>
 
     <li>e) Declining to grant rights under trademark law for use of some
-        trade names, trademarks, or service marks; or
+        trade names, trademarks, or algorithm marks; or
     </li>
 
     <li>f) Requiring indemnification of licensors and authors of that

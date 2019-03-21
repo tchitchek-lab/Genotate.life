@@ -119,28 +119,24 @@
         </tr>
         </thead>
         <tr>
-            <td>processed transcripts</td>
-            <td style='text-align:right;'><?php echo $nb_transcripts; ?></td>
-            <?php if ($nb_transcripts > 0) { ?>
+            <td>transcripts classified as non-coding</td>
+            <td style='text-align:right;'><?php echo $nb_regions_noncoding; ?></td>
+            <?php if ($nb_regions_noncoding > 0) { ?>
                 <td style='padding:0'>
-                    <button type='submit' form='transcripts' class='btn btn-default'
-                            style='width:100%;height:30px;'><span style='font-size: 1.5em;'
-                                                                  class='glyphicon glyphicon-download'
-                                                                  aria-hidden='true'></span></button>
+                    <button type="submit" form='regions_noncoding' class="btn btn-default" style="width:100%;height:30px;">
+					<span style='font-size: 1.5em;' class='glyphicon glyphicon-download'aria-hidden='true'></span></button>
                 </td>
             <?php } else {
                 echo "<td style='padding:0'><button class='btn btn-default' style='width:100%;height:30px;'><span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button></td>";
             } //END IF?>
         </tr>
         <tr>
-            <td>detected potential ncRNAs</td>
-            <td style='text-align:right;'><?php echo $nb_regions_noncoding; ?></td>
-            <?php if ($nb_regions_noncoding > 0) { ?>
+            <td>transcripts classified as coding</td>
+            <td style='text-align:right;'><?php echo $nb_transcripts; ?></td>
+            <?php if ($nb_transcripts > 0) { ?>
                 <td style='padding:0'>
-                    <button type="submit" form='regions_noncoding' class="btn btn-default"
-                            style="width:100%;height:30px;"><span style='font-size: 1.5em;'
-                                                                  class='glyphicon glyphicon-download'
-                                                                  aria-hidden='true'></span></button>
+                    <button type='submit' form='transcripts' class='btn btn-default' style='width:100%;height:30px;'>
+					<span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button>
                 </td>
             <?php } else {
                 echo "<td style='padding:0'><button class='btn btn-default' style='width:100%;height:30px;'><span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button></td>";
@@ -151,10 +147,8 @@
             <td style='text-align:right;'><?php echo $nb_regions_coding; ?></td>
             <?php if ($nb_regions_coding > 0) { ?>
                 <td style='padding:0'>
-                    <button type="submit" form='regions_coding' class="btn btn-default"
-                            style="width:100%;height:30px;"><span style='font-size: 1.5em;'
-                                                                  class='glyphicon glyphicon-download'
-                                                                  aria-hidden='true'></span></button>
+                    <button type="submit" form='regions_coding' class="btn btn-default"  style="width:100%;height:30px;">
+					<span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button>
                 </td>
             <?php } else {
                 echo "<td style='padding:0'><button class='btn btn-default' style='width:100%;height:30px;'><span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button></td>";
@@ -166,8 +160,7 @@
             <?php if ($nb_regions_coding > 0) { ?>
                 <td style='padding:0'>
                     <button type="submit" form='proteins' class="btn btn-default" style="width:100%;height:30px;">
-                            <span style='font-size: 1.5em;' class='glyphicon glyphicon-download'
-                                  aria-hidden='true'></span></button>
+                    <span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button>
                 </td>
             <?php } else {
                 echo "<td style='padding:0'><button class='btn btn-default' style='width:100%;height:30px;'><span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button></td>";
@@ -178,10 +171,8 @@
             <td style='text-align:right;'><?php echo $nb_annotations; ?></td>
             <?php if ($nb_annotations > 0) { ?>
                 <td style='padding:0'>
-                    <button type="submit" form='annotations' class="btn btn-default"
-                            style="width:100%;height:30px;"><span style='font-size: 1.5em;'
-                                                                  class='glyphicon glyphicon-download'
-                                                                  aria-hidden='true'></span></button>
+                    <button type="submit" form='annotations' class="btn btn-default" style="width:100%;height:30px;">
+					<span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button>
                 </td>
             <?php } else {
                 echo "<td style='padding:0'><button class='btn btn-default' style='width:100%;height:30px;'><span style='font-size: 1.5em;' class='glyphicon glyphicon-download' aria-hidden='true'></span></button></td>";

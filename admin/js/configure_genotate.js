@@ -25,9 +25,9 @@ function update_genotateweb_config()
     xhr.send (new FormData (oFormElement));
 }
 
-function update_service_color(input, service) {
+function update_service_color(input, algorithm) {
     const xhr = new XMLHttpRequest();
     const color = input.value.replace("#", "");
-    xhr.open("GET", "/admin/includes/update_colors.php?service=" + service + "&color=" + color, true);
+    xhr.open("GET", "/admin/includes/update_colors.php?algorithm=" + algorithm + "&color=" + color, true);
     xhr.send(null);
 }

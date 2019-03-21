@@ -1,5 +1,5 @@
-function toggle_names(service) {
-    const name = "div_names_" + service;
+function toggle_names(algorithm) {
+    const name = "div_names_" + algorithm;
     const div = document.getElementById(name);
     let content = div.getElementsByClassName("btn");
     for (let iIndex = 0; iIndex < content.length; iIndex++) {
@@ -7,13 +7,13 @@ function toggle_names(service) {
     }
 }
 
-function load_keywords(dataset, service) {
+function load_keywords(dataset, algorithm) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/includes/search_keywords.php?dataset=" + dataset + "&service=" + service, true);
+    xhr.open("GET", "/includes/search_keywords.php?dataset=" + dataset + "&algorithm=" + algorithm, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("#div_names_" + service);
-            $("#div_names_" + service).html(xhr.responseText);
+            console.log("#div_names_" + algorithm);
+            $("#div_names_" + algorithm).html(xhr.responseText);
             $('[data-toggle="tooltip"]').tooltip();
         }
     };
@@ -25,8 +25,8 @@ function dataset_refresh(dataset) {
     for (let iIndex = 0; iIndex < content.length; iIndex++) {
         const div = content[iIndex];
         const id_str = div.id;
-        const service = id_str.replace("div_names_", "");
-        load_keywords(dataset, service);
+        const algorithm = id_str.replace("div_names_", "");
+        load_keywords(dataset, algorithm);
     }
 }
 

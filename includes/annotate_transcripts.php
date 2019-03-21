@@ -17,8 +17,8 @@ function insert_annotation($encoded_id, $db_name, $description, $connexion)
 function create_cmd($analysis_id, $connexion)
 {
     $listprogcmd = "";
-    if (!empty ($_POST ['SERVICE'])) {
-        foreach ($_POST ['SERVICE'] as $id) {
+    if (!empty ($_POST ['algorithm'])) {
+        foreach ($_POST ['algorithm'] as $id) {
             if (!empty ($_POST ['checkbox_score_' . $id])) {
                 $score = $_POST ['score_' . $id];
             } else {
@@ -85,7 +85,7 @@ function create_cmd($analysis_id, $connexion)
     $listprogcmd = rtrim($listprogcmd, ", ");
     $listprogsql = rtrim($listprogsql, ", ");
 
-    $request = "INSERT INTO parameter(start_codons, stop_codons, inner_orf, outside_orf, compute_reverse, compute_ncrna, min_orf_size, services, analysis_id) VALUES (";
+    $request = "INSERT INTO parameter(start_codons, stop_codons, inner_orf, outside_orf, compute_reverse, compute_ncrna, min_orf_size, use_CPAT, CPAT_threshold, services, analysis_id) VALUES (";
     $request .= "'" . $_POST ['start_codon'] . "', ";
     $request .= "'" . $_POST ['stop_codon'] . "', ";
     if (empty ($_POST ['inner_orf'])) {
@@ -112,6 +112,16 @@ function create_cmd($analysis_id, $connexion)
         $request .= "'0', ";
     } else {
         $request .= "'" . $_POST ['orf_min_size'] . "', ";
+    }
+    if (empty ($_POST ['checkbox_checkORF'])) {
+        $request .= "'0', ";
+    } else {
+        $request .= "'1', ";
+    }
+    if (empty ($_POST ['checkORF_threshold'])) {
+        $request .= "'0', ";
+    } else {
+        $request .= "'" . $_POST ['checkORF_threshold'] . "', ";
     }
     $request .= "'" . $listprogsql . "', ";
     $request .= "'" . $analysis_id . "') ";
@@ -173,6 +183,9 @@ function create_cmd_options($PARALLEL_REGIONS, $PARALLEL_ANNOTATIONS, $PARALLEL_
         $options .= " -orf_min_size " . $_POST ['orf_min_size'];
     } else {
         $options .= " -orf_min_size 0";
+    }
+    if (!empty ($_POST ['checkbox_checkORF'])) {
+        $options .= " -checkORF -checkORF_threshold " . $_POST ['checkORF_threshold'];
     }
     if (!empty ($_POST ['start_codon'])) {
         $start_codon = strtoupper($_POST ['start_codon']);

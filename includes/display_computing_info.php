@@ -135,7 +135,7 @@ if ($state == "computing") {
         }
     </script>
 
-    <div style='width: 50%; padding: 0; margin: 0; padding-right: 5px; padding-bottom: 5px; height: 270px;'>
+    <div style='width: 50%; padding: 0; margin: 0; padding-right: 5px; padding-bottom: 5px; height: 300px;'>
         <div class="div-border-title">
             Dataset information
             <a style='float: right; margin-right: 10px;' data-toggle="tooltip" data-placement="top"
@@ -143,7 +143,7 @@ if ($state == "computing") {
                 <img src="/img/tutorial.svg"
                      style='margin-bottom: 2px; height: 20px; filter: invert(90%);'></a>
         </div>
-        <div class="div-border" style="padding: 5px; height: 230px">
+        <div class="div-border" style="padding: 5px; height: 265px">
             <div style="width: 100%;">
                 <label for='db_name'>analysis name</label>
                 <input readonly type="text" id="name" name="name" value="<?php echo $row['name']; ?>"
@@ -186,14 +186,14 @@ if ($state == "computing") {
         </div>
     </div>
 
-    <div style='width: 50%; padding: 0; margin: 0; padding-bottom: 5px; height: 270px;'>
+    <div style='width: 50%; padding: 0; margin: 0; padding-bottom: 5px; height: 300px;'>
         <div class="div-border-title">
             ORF identification parameters<a style='float: right; margin-right: 10px;' data-toggle="tooltip"
                                             data-placement="top" href="/index.php?page=tutorial" target="_blank"
                                             title="<?php echo $tooltip_text['orf_panel']; ?>"> <img
                         src="/img/tutorial.svg" style='margin-bottom: 2px; height: 20px; filter: invert(90%);'></a>
         </div>
-        <div class="div-border" style="padding: 5px; height: 230px">
+        <div class="div-border" style="padding: 5px; height: 265px">
             <div style="width: 100%;">
                 <label for="start_codon">start codon(s)</label>
                 <input readonly type="text" value="<?php echo $row['start_codons']; ?>"
@@ -205,14 +205,18 @@ if ($state == "computing") {
                        style="width: 100%; height: 2em; text-align: left;background-color:rgba(229,229,229, 0.2);">
             </div>
             <div class="input-group" style="padding: 0; margin: 0; margin-top: 5px; width: 100%; height: 30px;">
-                <span class='input-group-btn' style="width: 66.6%; height: 30px;"><label
-                            style="width: 100%; height: 30px;"
-                            class="btn btn-default <?php if (intval($row['min_orf_size']) > 0) {
-                                echo "active";
-                            } ?>" type="button" for='orf_min_size'>minimal ORF length</label></span>
-                <input readonly class="form-control" type="number" value="<?php echo $row['min_orf_size']; ?>"
-                       style="height: 30px; text-align: right;">
+                <span class='input-group-btn' style="width: 66.6%; height: 30px;">
+                  <label style="width: 100%; height: 30px;" class="btn btn-default <?php if (intval($row['min_orf_size']) > 0) { echo "active"; } ?>" 
+                         type="button" for='orf_min_size'>minimal ORF length</label></span>
+                <input readonly class="form-control" type="number" value="<?php echo $row['min_orf_size']; ?>"  style="height: 30px; text-align: right;">
                 <span class='input-group-addon' style='padding-top: 0; padding-bottom: 0;'>bases</span>
+            </div>
+            <div class="input-group" style="padding: 0; margin: 0; margin-top: 5px; width: 100%; height: 30px;">
+                <span class='input-group-btn' style="width: 66.6%; height: 30px;">
+                  <label style="width: 100%; height: 30px;" class="btn btn-default <?php if ($row['use_CPAT']) { echo "active"; } ?>"
+                         type="button">minimal ORF coding potential</label></span>
+                <input readonly class="form-control" type="number" value="<?php echo $row['CPAT_threshold']; ?>"  style="height: 30px; text-align: right;">
+                <span class='input-group-addon' style='padding-top: 0; padding-bottom: 0;'>percent</span>
             </div>
             <div class="btn-group" style="width: 100%; padding: 0; margin: 0; margin-top: 5px;">
                 <label data-toggle='buttons' style='width: 50%;' class='btn btn-default <?php if ($row['inner_orf']) {
@@ -241,19 +245,13 @@ if ($state == "computing") {
                                               title="<?php echo $tooltip_text['similarity_panel']; ?>"> <img
                         src="/img/tutorial.svg"
                         style='margin-bottom: 2px; height: 20px; filter: invert(90%);'></a>
-            <button onclick='copytextsimilarity();'
-                    style="float: right; margin-right: 5px; width: 30px; height: 30px; padding: 5px;"
-                    data-toggle="tooltip" data-placement="top" title="" class="btn btn-md btn-primary"
-                    data-original-title="copy similarity annotation references">
-                <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
-            </button>
         </div>
         <div class="div-border" style='padding: 5px; height: 210px; width: 100%; overflow: auto; overflow-y: scroll;'>
             <?php
             $services_array = explode("],", $row ['services']);
             $i = 0;
             foreach ($services_array as $service) {
-                if (substr_count($service, "BLASTN") > 0 || substr_count($service, "BLASTP") > 0) {
+                if ((substr_count($service, "BLASTN") > 0 || substr_count($service, "BLASTP") > 0) && (substr_count($service, "ncrna") == 0 && substr_count($service, "NONCODE") == 0)) {
                     $key = explode("[", $service) [0];
                     $value = explode("[", $service) [1];
                     $name = explode(",", $value) [0];
@@ -312,18 +310,12 @@ if ($state == "computing") {
                                                  title="<?php echo $tooltip_text['functional_panel']; ?>"> <img
                         src="/img/tutorial.svg"
                         style='margin-bottom: 2px; height: 20px; filter: invert(90%);'></a>
-            <button onclick='copytextfunctional();'
-                    style="float: right; margin-right: 5px; width: 30px; height: 30px; padding: 5px;"
-                    data-toggle="tooltip" data-placement="top" title="" class="btn btn-md btn-primary"
-                    data-original-title="copy functional annotation services">
-                <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
-            </button>
         </div>
         <div class="div-border" style='padding: 5px; height: 210px; width: 100%; overflow: auto; overflow-y: scroll;'>
             <?php
             $services_array = explode("],", $row ['services']);
             foreach ($services_array as $service) {
-                if ($service != "" && substr_count($service, "BLASTN") == 0 && substr_count($service, "BLASTP") == 0) {
+                if ($service != "" && substr_count($service, "BLASTN") == 0 && substr_count($service, "BLASTP") == 0 && substr_count($service, "RNA") == 0) {
                     $key = explode("[", $service) [0];
                     $value = explode("[", $service) [1];
                     $value = rtrim($value, "]");
@@ -341,34 +333,104 @@ if ($state == "computing") {
             ?>
         </div>
     </div>
-    <?php
-    // COPY PASTE AREAS
-    $text = "";
-    $services_array = explode("],", $row ['services']);
-    foreach ($services_array as $service) {
-        if ($service != "" && substr_count($service, "BLASTN") == 0 && substr_count($service, "BLASTP") == 0) {
-            $service = rtrim($service, "]");
-            $text .= "$service], ";
-        }
-    }
-    echo "<input id='textarea_functional' type='hidden' value='$text'>";
-    $text = "";
-    $services_array = explode("],", $row ['services']);
-    foreach ($services_array as $service) {
-        if (substr_count($service, "BLASTN") > 0 || substr_count($service, "BLASTP") > 0) {
-            $key = explode("[", $service) [0];
-            $value = explode("[", $service) [1];
-            $name = explode(",", $value) [0];
-            $identity = explode(",", $value) [1];
-            $qc = explode(",", $value) [2];
-            $sc = explode(",", $value) [3];
-            $sc = rtrim($sc, "]");
-            $service = ($name . " identity=" . $identity . ";query_cover=" . $qc . ";subject_cover=" . $sc);
-            $text .= "$service, ";
-        }
-    }
-    echo "<input id='textarea_similarity' type='hidden' value='$text'>";
+    <div style='width: 50%; margin: 0; padding: 0 5px 5px 0;height: 280px;'>
+        <div class="div-border-title">
+            Non-coding homology annotation parameters <a style='float: right; margin-right: 10px;' data-toggle="tooltip"
+                                              data-placement="top" href="/index.php?page=tutorial" target="_blank"
+                                              title="<?php echo $tooltip_text['similarity_panel']; ?>"> <img
+                        src="/img/tutorial.svg"
+                        style='margin-bottom: 2px; height: 20px; filter: invert(90%);'></a>
+        </div>
+        <div class="div-border" style='padding: 5px; height: 210px; width: 100%; overflow: auto; overflow-y: scroll;'>
+            <?php
+            $services_array = explode("],", $row ['services']);
+            $i = 0;
+            foreach ($services_array as $service) {
+                if ((substr_count($service, "BLASTN") > 0 || substr_count($service, "BLASTP") > 0) && (substr_count($service, "ncrna") > 0 || substr_count($service, "NONCODE") > 0)) {
+                    $key = explode("[", $service) [0];
+                    $value = explode("[", $service) [1];
+                    $name = explode(",", $value) [0];
+                    $identity = explode(",", $value) [1];
+                    $qc = explode(",", $value) [2];
+                    $sc = explode(",", $value) [3];
+                    $sc = rtrim($sc, "]");
+                    $i++;
+                    ?>
 
+                    <div style="padding: 0; margin: 0; margin-top: 5px; width: 100%;">
+                        <div class='btn-group' role='group' style='align: left; width: 100%;'>
+                            <label style="width: 90%; height: 20px;" class="btn btn-sm btn-default active"
+                                   type="button"><?php echo $name; ?></label>
+                            <button style='width: 10%; height: 20px;' class='btn btn-default' type='button'
+                                    data-toggle='collapse' data-target='#collapse_<?php echo $i; ?>'
+                                    aria-expanded='false' aria-controls='collapse_<?php echo $i; ?>'>
+                                <span class='caret' style='height: 20px;'></span>
+                            </button>
+                            <div class='collapse' id='collapse_<?php echo $i; ?>' style='width: 100%;'>
+                                <div class='card card-block' style='width: 100%;'>
+                                    <div class='input-group' style='width: 100%;'>
+                                        <span class='input-group-addon'
+                                              style='width: 70%; padding-top: 0; padding-bottom: 0;'>identity percentage</span>
+                                        <input readonly class="form-control" type="number"
+                                               value="<?php echo $identity; ?>"
+                                               style="width: 100%; height: 20px; text-align: right;">
+                                    </div>
+                                    <div class='input-group' style='width: 100%;'>
+                                        <span class='input-group-addon'
+                                              style='width: 70%; padding-top: 0; padding-bottom: 0;'>query alignment coverage</span>
+                                        <input readonly class="form-control" type="number" value="<?php echo $qc; ?>"
+                                               style="width: 100%; height: 20px; text-align: right;">
+                                    </div>
+                                    <div class='input-group' style='width: 100%;'>
+                                        <span class='input-group-addon'
+                                              style='width: 70%; padding-top: 0; padding-bottom: 0;'>subject alignment coverage</span>
+                                        <input readonly class="form-control" type="number" value="<?php echo $sc; ?>"
+                                               style="width: 100%; height: 20px; text-align: right;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+
+    <div style='width: 50%; margin: 0; padding: 0 0 5px;height: 280px;'>
+        <div class="div-border-title">
+            Non-coding functionnal annotation parameters <a style='float: right; margin-right: 10px;' data-toggle="tooltip"
+                                                 data-placement="top" href="/index.php?page=tutorial" target="_blank"
+                                                 title="<?php echo $tooltip_text['functional_panel']; ?>"> <img
+                        src="/img/tutorial.svg"
+                        style='margin-bottom: 2px; height: 20px; filter: invert(90%);'></a>
+        </div>
+        <div class="div-border" style='padding: 5px; height: 210px; width: 100%; overflow: auto; overflow-y: scroll;'>
+            <?php
+            $services_array = explode("],", $row ['services']);
+            foreach ($services_array as $service) {
+                if ($service != "" && substr_count($service, "BLASTN") == 0 && substr_count($service, "BLASTP") == 0 && substr_count($service, "RNA") > 0) {
+                    $key = explode("[", $service) [0];
+                    $value = explode("[", $service) [1];
+                    $value = rtrim($value, "]");
+                    ?>
+                    <div class="input-group" style="padding: 0; margin: 0; margin-top: 5px; width: 100%; height: 20px;">
+                        <span class="input-group-btn" style="width: 66.6%; height: 20px;"> <label
+                                    style="width: 100%; height: 20px;" class="btn btn-sm btn-default active"
+                                    type="button"><?php echo $key; ?></label></span>
+                        <input readonly class="form-control" type="number" value="<?php echo $value; ?>"
+                               style="height: 20px; text-align: right;">
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+	
+	
+    <?php
 }
 
 function get_percentage($file_base)

@@ -22,6 +22,19 @@ $transcript_name = $row['transcript_name'];
 $transcript_desc = $row['transcript_desc'];
 $transcript_size = $row['transcript_size'];
 
+if ($transcript_id == "") {
+    //echo "<div class='div-border' style='margin:0;padding:10px;overflow:auto;width:100%;max-height:30em;'>No ORF identified</div>";
+    return -1;
+}
+$request = "SELECT count(region_id) as nbregion FROM region WHERE coding='coding' and transcript_id=$transcript_id";
+$results = mysqli_query($connexion, $request) or die("SQL Error:<br>" . $request . "<br>" . mysqli_error($connexion));
+$tmprow = mysqli_fetch_array($results, MYSQLI_ASSOC);
+$nbregion = $tmprow['nbregion'];
+if ($nbregion == 0) {
+    //echo "<div class='div-border' style='margin:0;padding:10px;overflow:auto;width:100%;max-height:30em;'>No ORF identified</div>";
+    return -1;
+}
+
 ?>
 
 <div class="div-border-title">
@@ -33,10 +46,6 @@ $transcript_size = $row['transcript_size'];
 </div>
 
 <?php
-if ($transcript_id == "") {
-    echo "<div class='div-border' style='margin:0;padding:10px;overflow:auto;width:100%;max-height:30em;'>No ORF identified</div>";
-    return -1;
-}
 
 //GENERATE SVG
 $svgtext = "";

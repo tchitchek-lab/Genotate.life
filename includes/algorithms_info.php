@@ -1,6 +1,6 @@
 <?php
 
-function get_services_info()
+function get_algorithms_info()
 {
     $services_info_services = array();
     $services_info_service = array();
@@ -10,6 +10,7 @@ function get_services_info()
     $services_info_service ['score'] = 0;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "other";
     $services_info_service ['description'] = "nucleic similarity annotation from transcript region aligned against nucleid references";
     $services_info_services ['BLASTN'] = $services_info_service;
 
@@ -19,6 +20,7 @@ function get_services_info()
     $services_info_service ['score'] = 0;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "other";
     $services_info_service ['description'] = "protein similarity annotation from encoded protein aligned against protein references";
     $services_info_services ['BLASTP'] = $services_info_service;
 
@@ -28,6 +30,7 @@ function get_services_info()
     $services_info_service ['score'] = 0;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "TMHMM predicts of transmembrane domains, which fundamentally rule all the membrane biochemical processes, with the hidden Markov models";
     $services_info_services ['TMHMM'] = $services_info_service;
 
@@ -37,6 +40,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.5;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "noncoding";
     $services_info_service ['description'] = "TRNASCANSE predict tRNA";
     $services_info_services ['TRNASCANSE'] = $services_info_service;
 
@@ -46,6 +50,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.5;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "noncoding";
     $services_info_service ['description'] = "RNAMMER predict rRNA";
     $services_info_services ['RNAMMER'] = $services_info_service;
 
@@ -55,6 +60,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.45;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Predict the secretory signal peptide based on neural networks";
     $services_info_services ['SIGNALP'] = $services_info_service;
 
@@ -64,6 +70,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.2;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Predict arginine and lysine propeptide, which characterize inactive peptides precursors which undergo post translational processing to become biologically active polypeptides";
     $services_info_services ['PROP'] = $services_info_service;
 
@@ -73,6 +80,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.5;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Predict C mannosylation sites in mammalian proteins using neural networks";
     $services_info_services ['NETCGLYC'] = $services_info_service;
 
@@ -81,8 +89,8 @@ function get_services_info()
     $services_info_service ['name'] = "threshold";
     $services_info_service ['score'] = 0.5;
     $services_info_service ['min'] = 0;
-
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Predicts N Glycosylation sites in human proteins using artificial neural networks";
     $services_info_services ['NETNGLYC'] = $services_info_service;
 
@@ -92,8 +100,9 @@ function get_services_info()
     $services_info_service ['score'] = 1;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 2;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Determine binding site to a specific MHC class I molecule";
-    $services_info_services ['MHCI'] = $services_info_service;
+    $services_info_services ['NETMHCI'] = $services_info_service;
 
     $services_info_service = array();
     $services_info_service ['color'] = "#7d15eb";
@@ -101,8 +110,9 @@ function get_services_info()
     $services_info_service ['score'] = 1;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 2;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Determine binding site to a specific MHC class II molecule";
-    $services_info_services ['MHCII'] = $services_info_service;
+    $services_info_services ['NETMHCII'] = $services_info_service;
 
     $services_info_service = array();
     $services_info_service ['color'] = "#db7b0d";
@@ -110,6 +120,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.5;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Predict the location of linear B cell epitopes";
     $services_info_services ['BEPIPRED'] = $services_info_service;
 
@@ -118,6 +129,7 @@ function get_services_info()
     $services_info_service ['score'] = 0.05;
     $services_info_service ['min'] = 0;
     $services_info_service ['max'] = 1;
+    $services_info_service ['type'] = "coding";
     $services_info_service ['color'] = "#2917eb";
     $services_info_service ['description'] = "Search annotation based on the Conserved Domain Database";
     $services_info_services ['CDD'] = $services_info_service;

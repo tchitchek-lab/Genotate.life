@@ -95,11 +95,12 @@ function get_proteins($name, $analysis_id, $transcript_name, $relative_region_id
 
 function get_annotations($analysis_id, $transcript_name, $region_id, $connexion)
 {
-    $request = "SELECT * FROM annotation WHERE analysis_id =\"" . $analysis_id . "\" AND region_id =\"" . $region_id . "\"";
+    $request = "SELECT * FROM annotation LEFT JOIN region ON (annotation.region_id = region.region_id) WHERE annotation.analysis_id =\"" . $analysis_id . "\" AND annotation.region_id =\"" . $region_id . "\"";
     $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
-    $text = '';
+    $text = "transcript_name\tsource\tfeature\tbegin\tend\tscore\tstrand\tframe\tdescription\n";
     while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-        $text .= $transcript_name . "\t" . $region_id . "\t" . $row ['service'] . "\t" . $row ['name'] . "\t" . $row ['begin'] . "\t" . $row ['end'] . "\t" . $row ['description'] . "\n";
+        $row ['description'] = rtrim($row ['description']);
+        $text .= $transcript_name . "\t" . $row ['algorithm'] . "\t" . $row ['name'] . "\t" . $row ['begin'] . "\t" . $row ['end']  . "\t" . $row ['score']  . "\t" . $row ['strand']  . "\t0\t" . $row ['description'] . "\n";
     }
     return ($text);
 }

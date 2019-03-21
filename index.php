@@ -107,6 +107,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/menu_user.php");
         $PAGES['view_annotations'] = '/pages/view_annotations.php';
         $PAGES['about'] = '/pages/about.php';
         $PAGES['tutorial'] = '/pages/tutorial.php';
+        $PAGES['annotate_single_SVG'] = '/pages/annotate_single_SVG.php';
 
         $page = "";
         if (isset($_GET ['page'])) {

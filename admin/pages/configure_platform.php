@@ -232,7 +232,7 @@ $space = floor(100 * $usedspace / $totalspace);
 <div class="div-border" style="margin-bottom: 10px;">
     <?php
     $services_color = array();
-    $request = "SELECT * from service";
+    $request = "SELECT * from algorithm";
     $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
     while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
         $service = $row ['name'];

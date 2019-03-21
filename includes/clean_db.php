@@ -20,7 +20,7 @@ function delete($analysis_id, $connexion)
 
 $connexion = connect_database();
 
-$request = "SELECT * FROM `analysis` WHERE NOW()-TIMESTAMP(`creation_date`)>60*60*24*2";
+$request = "SELECT * FROM `analysis` WHERE TIMESTAMPDIFF(DAY,`creation_date`,NOW())>=2 and is_permanent=0";
 $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
     $analysis_id = $row ['analysis_id'];

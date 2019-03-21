@@ -132,39 +132,62 @@ $noncode_desc ["Saccharomyces cerevisiae"] = "55 lncRNA transcripts (52 lncRNA g
 $noncode_desc ["Sus scrofa"] = "29,585 lncRNA transcripts (17,811 lncRNA genes)";
 
 $uniref_name = array();
-$uniref_name ["UniRef_Swiss"] = "UniRef_Swiss";
-$uniref_name ["UniRef_trEMBL"] = "UniRef_trEMBL";
-$uniref_name ["UniRef_100"] = "UniRef_100";
-$uniref_name ["UniRef_90"] = "UniRef_90";
-$uniref_name ["UniRef_50"] = "UniRef_50";
+$uniref_name ["UniRef_Swiss"] = "UniProt_Swiss";
+$uniref_name ["UniRef_trEMBL"] = "UniProt_trEMBL";
+$uniref_name ["UniProt_UniRef100"] = "UniProt_UniRef100";
+$uniref_name ["UniProt_UniRef90"] = "UniProt_UniRef90";
+$uniref_name ["UniProt_UniRef50"] = "UniProt_UniRef50";
 
 $uniref_species = array();
 $uniref_species ["UniRef_Swiss"] = "multiple";
 $uniref_species ["UniRef_trEMBL"] = "multiple";
-$uniref_species ["UniRef_100"] = "multiple";
-$uniref_species ["UniRef_90"] = "multiple";
-$uniref_species ["UniRef_50"] = "multiple";
+$uniref_species ["UniProt_UniRef100"] = "multiple";
+$uniref_species ["UniProt_UniRef90"] = "multiple";
+$uniref_species ["UniProt_UniRef50"] = "multiple";
 
 $uniref_release = array();
 $uniref_release ["UniRef_Swiss"] = "2018_10";
 $uniref_release ["UniRef_trEMBL"] = "2018_10";
-$uniref_release ["UniRef_100"] = "2018_10";
-$uniref_release ["UniRef_90"] = "2018_10";
-$uniref_release ["UniRef_50"] = "2018_10";
+$uniref_release ["UniProt_UniRef100"] = "2018_10";
+$uniref_release ["UniProt_UniRef90"] = "2018_10";
+$uniref_release ["UniProt_UniRef50"] = "2018_10";
 
 $uniref_link = array();
 $uniref_link ["UniRef_Swiss"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz";
 $uniref_link ["UniRef_trEMBL"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_trembl.fasta.gz";
-$uniref_link ["UniRef_100"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref100/uniref100.fasta.gz";
-$uniref_link ["UniRef_90"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz";
-$uniref_link ["UniRef_50"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50/uniref50.fasta.gz";
+$uniref_link ["UniProt_UniRef100"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref100/uniref100.fasta.gz";
+$uniref_link ["UniProt_UniRef90"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz";
+$uniref_link ["UniProt_UniRef50"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50/uniref50.fasta.gz";
 
 $uniref_description = array();
 $uniref_description ["UniRef_Swiss"] = "Dataset of 558,681 protein sequences. Manually annotated and reviewed";
 $uniref_description ["UniRef_trEMBL"] = "Dataset of 133,507,323 protein sequences. Automatically annotated and not reviewed.";
-$uniref_description ["UniRef_100"] = "Dataset of 164,828,188 protein sequences. Clusters of identical sequences and subfragments with 11 or more residues across multiple datasets.";
-$uniref_description ["UniRef_90"] = "Dataset of 83,681,116 proteins sequences. Clusters of sequences having at least a sequence identity of 90% and an overlap with the longest sequence in the cluster of 80% across multiple datasets.";
-$uniref_description ["UniRef_50"] = "Dataset of 31,036,088 protein sequences. Clusters of sequences having at least a sequence identity of 50% and an overlap with the longest sequence in the cluster of 80% across multiple datasets.";
+$uniref_description ["UniProt_UniRef100"] = "Dataset of 164,828,188 protein sequences. Clusters of identical sequences and subfragments with 11 or more residues across multiple datasets.";
+$uniref_description ["UniProt_UniRef90"] = "Dataset of 83,681,116 proteins sequences. Clusters of sequences having at least a sequence identity of 90% and an overlap with the longest sequence in the cluster of 80% across multiple datasets.";
+$uniref_description ["UniProt_UniRef50"] = "Dataset of 31,036,088 protein sequences. Clusters of sequences having at least a sequence identity of 50% and an overlap with the longest sequence in the cluster of 80% across multiple datasets.";
+
+$uniref_name = array();
+$uniref_name ["UniRef_Swiss"] = "UniProt_Swiss";
+$uniref_name ["UniRef_trEMBL"] = "UniProt_trEMBL";
+$uniref_name ["UniProt_UniRef100"] = "UniProt_UniRef100";
+$uniref_name ["UniProt_UniRef90"] = "UniProt_UniRef_90";
+$uniref_name ["UniProt_UniRef50"] = "UniProt_UniRef_50";
+
+$ncbi_species = array();
+$ncbi_species ["NCBI_nr"] = "multiple";
+$ncbi_species ["NCBI_nt"] = "multiple";
+
+$ncbi_release = array();
+$ncbi_release ["NCBI_nr"] = "2019";
+$ncbi_release ["NCBI_nt"] = "2019";
+
+$ncbi_link = array();
+$ncbi_link ["NCBI_nr"] = "ftp://ftp.ncbi.nih.gov/blast/db/FASTA/nr.gz";
+$ncbi_link ["NCBI_nt"] = "ftp://ftp.ncbi.nih.gov/blast/db/FASTA/nt.gz";
+
+$ncbi_description = array();
+$ncbi_description ["NCBI_nr"] = "Dataset of 192,341,036 protein sequences. Non-redundant protein sequences from translations of annotated coding regions in GenBank, RefSeq and TPA, as well as records from SwissProt, PIR, PRF, and PDB.";
+$ncbi_description ["NCBI_nt"] = "Dataset of 50,703,728 nucleic sequences. Non-redundant nucleic sequences from NCBI RefSeq, GenBank, TPA and PDB.";
 
 $ensembl_release = 94;
 $ensembl_desc = array();
@@ -303,7 +326,7 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
         </tr>
         </thead>
         <tr>
-            <td>UniRef_SwissProt</td>
+            <td>UniProt_SwissProt</td>
             <?php
             if (in_array("UniRef_Swiss-Prot", $blast_db_array)) {
                 echo "	<td><button class='btn btn-success btn-sm' id='UniRef_Swiss-Prot' form='' ".$disabled_status.">protein</button></td>";
@@ -321,7 +344,7 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
         </tr>
 
         <tr>
-            <td>UniRef_trEMBL</td>
+            <td>UniProt_trEMBL</td>
             <?php
             if (in_array("UniRef_trEMBL", $blast_db_array)) {
                 echo "	<td><button class='btn btn-success btn-sm' id='UniRef_trEMBL' form='' ".$disabled_status.">protein</button></td>";
@@ -341,14 +364,14 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
 
 
         <tr>
-            <td>UniRef_100</td>
+            <td>UniProt_UniRef100</td>
             <?php
-            if (in_array("UniRef_100", $blast_db_array)) {
+            if (in_array("UniProt_UniRef100", $blast_db_array)) {
                 echo "	<td><button class='btn btn-success btn-sm' id='UniRef_100' form='' ".$disabled_status.">protein</button></td>";
-            } else if (in_array("UniRef_100", $computing_blast_db_array)) {
+            } else if (in_array("UniProt_UniRef100", $computing_blast_db_array)) {
                 echo "	<td><button class='btn btn-warning btn-sm' id='UniRef_100' form='' ".$disabled_status.">protein</button></td>";
             } else {
-                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_100' onclick=\"synchronize_uniref('UniRef_100','" . $uniref_species ["UniRef_100"] . "','" . $uniref_release["UniRef_100"] . "','" . $uniref_description ["UniRef_100"] . "','" . $uniref_link ["UniRef_100"] . "');\" form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_100' onclick=\"synchronize_uniref('UniRef_100','" . $uniref_species ["UniProt_UniRef100"] . "','" . $uniref_release["UniProt_UniRef100"] . "','" . $uniref_description ["UniProt_UniRef100"] . "','" . $uniref_link ["UniProt_UniRef100"] . "');\" form='' ".$disabled_status.">protein</button></td>";
             }
             ?>
             <td>Dataset of 164,828,188 protein sequences.<br>
@@ -360,14 +383,14 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
         </tr>
 
         <tr>
-            <td>UniRef_90</td>
+            <td>UniProt_UniRef90</td>
             <?php
-            if (in_array("UniRef_90", $blast_db_array)) {
+            if (in_array("UniProt_UniRef90", $blast_db_array)) {
                 echo "	<td><button class='btn btn-success btn-sm' id='UniRef_90' form='' $disabled_status>protein</button></td>";
-            } else if (in_array("UniRef_90", $computing_blast_db_array)) {
+            } else if (in_array("UniProt_UniRef90", $computing_blast_db_array)) {
                 echo "	<td><button class='btn btn-warning btn-sm' id='UniRef_90' form='' $disabled_status>protein</button></td>";
             } else {
-                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_90' onclick=\"synchronize_uniref('UniRef_90','" . $uniref_species ["UniRef_90"] . "','" . $uniref_release["UniRef_90"] . "','" . $uniref_description ["UniRef_90"] . "','" . $uniref_link ["UniRef_90"] . "');\" form='' $disabled_status>protein</button></td>";
+                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_90' onclick=\"synchronize_uniref('UniRef_90','" . $uniref_species ["UniProt_UniRef90"] . "','" . $uniref_release["UniProt_UniRef90"] . "','" . $uniref_description ["UniProt_UniRef90"] . "','" . $uniref_link ["UniProt_UniRef90"] . "');\" form='' $disabled_status>protein</button></td>";
             }
             ?>
             <td>Dataset of 83,681,116 proteins sequences.<br>
@@ -381,14 +404,14 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
 
 
         <tr>
-            <td>UniRef_50</td>
+            <td>UniProt_UniRef50</td>
             <?php
-            if (in_array("UniRef_50", $blast_db_array)) {
+            if (in_array("UniProt_UniRef50", $blast_db_array)) {
                 echo "	<td><button class='btn btn-success btn-sm' id='UniRef_50' form='' ".$disabled_status.">protein</button></td>";
-            } else if (in_array("UniRef_50", $computing_blast_db_array)) {
+            } else if (in_array("UniProt_UniRef50", $computing_blast_db_array)) {
                 echo "	<td><button class='btn btn-warning btn-sm' id='UniRef_50' form='' ".$disabled_status.">protein</button></td>";
             } else {
-                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_50' onclick=\"synchronize_uniref('UniRef_50','" . $uniref_species ["UniRef_50"] . "','" . $uniref_release["UniRef_50"] . "','" . $uniref_description ["UniRef_50"] . "','" . $uniref_link ["UniRef_50"] . "');\" form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_50' onclick=\"synchronize_uniref('UniRef_50','" . $uniref_species ["UniProt_UniRef50"] . "','" . $uniref_release["UniProt_UniRef50"] . "','" . $uniref_description ["UniProt_UniRef50"] . "','" . $uniref_link ["UniProt_UniRef50"] . "');\" form='' ".$disabled_status.">protein</button></td>";
             }
             ?>
             <td>Dataset of 31,036,088 protein sequences.<br>
@@ -400,6 +423,60 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
         </tr>
     </table>
 </div>
+
+
+<div class="div-border-title">
+    NCBI datasets
+    <a style='float:right;margin-right:10px;' data-toggle="tooltip" data-placement="top" href="/index.php?page=tutorial"
+       target="_blank" title="<?php echo $tooltip_text['NCBI']; ?>">
+        <img src="/img/tutorial.svg" style='margin-bottom: 2px;height: 20px; filter: invert(90%);'></a>
+</div>
+<div class="div-border" style="width:100%;margin-bottom:10px;">
+    <table style='width: 100%;' class='manage_tables'>
+        <thead>
+        <tr>
+            <td style='width: 35%;'>dataset</td>
+            <td style='width: 6%;text-align:center;'>import</td>
+            <td style='width: 54%;'>description</td>
+            <td style='width: 5%;text-align:center;'>link</td>
+        </tr>
+        </thead>
+        <tr>
+
+        <tr>
+            <td>NCBI_nt</td>
+            <?php
+            if (in_array("NCBI_nt", $blast_db_array)) {
+                echo "	<td><button class='btn btn-success btn-sm' id='NCBI_nt' form='' ".$disabled_status.">nucleic</button></td>";
+            } else if (in_array("NCBI_nt", $computing_blast_db_array)) {
+                echo "	<td><button class='btn btn-warning btn-sm' id='NCBI_nt' form='' ".$disabled_status.">nucleic</button></td>";
+            } else {
+                echo "	<td><button class='btn btn-primary btn-sm' id='NCBI_nt' onclick=\"synchronize_noncode('NCBI_nt','" . $ncbi_species ["NCBI_nt"] . "','" . $ncbi_release["NCBI_nt"] . "','" . $ncbi_description ["NCBI_nt"] . "','" . $ncbi_link ["NCBI_nt"] . "');\" form='' ".$disabled_status.">nucleic</button></td>";
+            }
+            echo"<td>".$ncbi_description ['NCBI_nt']."</td>";
+            ?>
+            <td><a href='https://www.ncbi.nlm.nih.gov/nucleotide/' target='_blank'><img src='/img/link.svg' style='margin-left:5px;margin-bottom: 2px;height: 20px;'></a>
+            </td>
+        </tr>
+
+        <td>NCBI_nr</td>
+        <?php
+        if (in_array("NCBI_nr", $blast_db_array)) {
+            echo "	<td><button class='btn btn-success btn-sm' id='NCBI_nr' form='' ".$disabled_status.">protein</button></td>";
+        } else if (in_array("NCBI_nr", $computing_blast_db_array)) {
+            echo "	<td><button class='btn btn-warning btn-sm' id='NCBI_nr' form='' ".$disabled_status.">protein</button></td>";
+        } else {
+            echo "	<td><button class='btn btn-primary btn-sm' id='NCBI_nr' onclick=\"synchronize_uniref('NCBI_nr','" . $ncbi_species ["NCBI_nr"] . "','" . $ncbi_release["NCBI_nr"] . "','" . $ncbi_description ["NCBI_nr"] . "','" . $ncbi_link ["NCBI_nr"] . "');\" form='' ".$disabled_status.">protein</button></td>";
+        }
+        echo"<td>".$ncbi_description ['NCBI_nr']."</td>";
+        ?>
+        <td><a href='https://www.ncbi.nlm.nih.gov/protein/' target='_blank'><img src='/img/link.svg' style='margin-left:5px;margin-bottom: 2px;height: 20px;'></a>
+        </td>
+        </tr>
+
+    </table>
+</div>
+
 
 <div class="div-border-title">
     Ensembl datasets (Release 94)
@@ -467,6 +544,14 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
         echo "</table>";
         ?>
 </div>
+
+<!--
+<script>
+$('#annotform > div:nth-child(5) > div.div-border > div > div:nth-child(1) > div.btn-group > button').click()
+$('#functional_services_container > div:nth-child(1) > div.btn-group > button').click()
+setExemple(1)
+</script>
+-->
 
 <script>
     document.title = "Genotate.life - Admin - Import homology references";

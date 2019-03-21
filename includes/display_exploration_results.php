@@ -1,6 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/tooltips.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/services_info.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/algorithms_info.php");
 ?>
 
 
@@ -59,17 +59,8 @@ function display_exploration_results($connexion,$analysis_id, $tooltip_text){
         </div>
 
         <div class='div-border' style="margin:0;padding:0;width: 100%;">
-            <div style="width: 100%; padding: 5px; margin: 0; ">
-          <span data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['annotated_only']; ?>"
-                style="width: 100%; float: left;"> <label data-toggle='buttons' class='btn btn-default active'
-                                                          for="ncRNA" style="width: 100%;">
-              <input type="checkbox" id="annotated_only" name="annotated_only" checked style='display: none;'>
-              annotated transcript(s) only
-            </label>
-          </span>
-            </div>
             <?php
-            $services_info = get_services_info();
+            $services_info = get_algorithms_info();
             foreach ($services_info as $service => $info_service) {
                 echo "<div class='div_keywords' id='div_names_$service'></div>";
             }
@@ -79,6 +70,9 @@ function display_exploration_results($connexion,$analysis_id, $tooltip_text){
 
     <button name="submit_search_form" id="submit_search_form" style="width: 100%; font-size: 1.3em;margin-top:10px;" class="btn btn-secondary active">Search sequences</button>
     <input type='hidden' name='activepage' id='activepage' value='1'>
+    <input type='hidden' name='coding_only_filter' id='coding_only_filter' value='0'>
+    <input type='hidden' name='noncoding_only_filter' id='noncoding_only_filter' value='0'>
+    <input type='hidden' name='annotated_only_filter' id='annotated_only_filter' value='0'>
 </form>
 
 <div id="search_display_div" style='width: 100%;margin-top:10px;'></div>

@@ -104,18 +104,18 @@ function create_svg(region_id) {
     pos_y = pos_y - height_rect;
     for (let annotationkey in services_annot) {
         const annotation = services_annot[annotationkey];
-        const service = annotation['service'];
-        if (document.getElementById(service + '_' + region_id).classList.contains("active")) {
+        const algorithm = annotation['algorithm'];
+        if (document.getElementById(algorithm + '_' + region_id).classList.contains("active")) {
             const name = annotation['name'];
             const description = annotation['description'];
             const begin = annotation['begin'] * 1 + region_begin;
             const end = annotation['end'] * 1 + region_begin;
             if ((begin <= display_begin && end >= display_begin) || (begin >= display_begin && end <= display_end) || (begin <= display_end && end >= display_end)) {
-                if ((service !== service_tmp) || (begin <= begin_tmp && end >= begin_tmp) || (begin >= begin_tmp && end <= end_tmp) || (begin <= end_tmp && end >= end_tmp)) {
+                if ((algorithm !== service_tmp) || (begin <= begin_tmp && end >= begin_tmp) || (begin >= begin_tmp && end <= end_tmp) || (begin <= end_tmp && end >= end_tmp)) {
                     pos_y = pos_y + height_rect + height_space;
                 }
-                const color = services_color[service];
-                service_tmp = service;
+                const color = services_color[algorithm];
+                service_tmp = algorithm;
                 begin_tmp = begin;
                 end_tmp = end;
                 let annot_displayed_size = zoom_ratio * (Math.min(end, display_end) - Math.max(begin, display_begin) + 1);
@@ -129,16 +129,16 @@ function create_svg(region_id) {
                 }
 
                 //HYPERLINK
-                //svgtext+="\n<a target='_blank' href='https://www.google.fr/search?q="+name+" "+service+"'>";
+                //svgtext+="\n<a target='_blank' href='https://www.google.fr/search?q="+name+" "+algorithm+"'>";
 
                 //RECTANGLE OF THE ANNOTATION
                 svgtext += "\n<rect x='" + annot_displayed_begin + "' y='" + pos_y + "' width='" + annot_displayed_size + "'";
                 svgtext += " height='" + height_rect + "' fill='" + color + "' fill-opacity='0.8'>";
-                svgtext += "<title>[" + begin + "," + end + "] " + name + " " + service + " " + description + "</title> ";
+                svgtext += "<title>[" + begin + "," + end + "] " + name + " " + algorithm + " " + description + "</title> ";
                 svgtext += "</rect>";
 
                 //TEXT OF THE ANNOTATION
-                const nametmp = name + " " + service;
+                const nametmp = name + " " + algorithm;
                 let namecut = nametmp.substr(0, annot_displayed_size / 5);
                 let left_margin = 2;
                 if ((annot_displayed_size / 2 - namecut.length * 3) > namecut.length) {
@@ -150,7 +150,7 @@ function create_svg(region_id) {
                 svgtext += "\n<text   x='" + (annot_displayed_begin + left_margin) + "' y='" + (pos_y + height_rect - 1) + "' ";
                 svgtext += "font-family='Verdana' font-size='" + height_rect + "'  style='fill:rgb(0,0,0);'>";
                 svgtext += namecut;
-                svgtext += "<title>[" + begin + "," + end + "] " + name + " " + service + " " + description + "</title> ";
+                svgtext += "<title>[" + begin + "," + end + "] " + name + " " + algorithm + " " + description + "</title> ";
                 svgtext += "</text>";
             }
         }

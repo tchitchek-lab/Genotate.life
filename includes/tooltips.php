@@ -4,7 +4,14 @@ $tooltip_text ['dataset_filter'] = "Select here the dataset you are interested i
 $tooltip_text ['keyword_filter'] = "Provide here some annotation filtering criteria (algorithm name, minimal and maximal number of annotations)";
 $tooltip_text ['start_codon'] = "codon(s) used to define the begin of an ORF";
 $tooltip_text ['stop_codon'] = "codon(s) used to define the end of an ORF";
-$tooltip_text ['orf_min_size'] = "keep only ORFs with a length higer than than a specific size";
+$tooltip_text ['orf_min_size'] = "keep only ORFs with a length higher than a specific threshold";
+
+$tooltip_text ['checkORF'] = "keep only ORFs with a CPAT coding potential higher than a specific threshold";
+
+$tooltip_text ['coding_only_filter'] = "filter to display only conding transcripts";
+$tooltip_text ['noncoding_only_filter'] = "filter to display only non-coding transcripts";
+$tooltip_text ['annotated_only_filter'] = "filter to display only annotated transcripts";
+
 $tooltip_text ['inner'] = "an inner ORF is an ORF contained in larger ORF";
 $tooltip_text ['outside'] = "an outside ORF lacks either the start or stop codon";
 $tooltip_text ['compute_ncRNA'] = "keep transcripts without ORF (such as ncRNA)";

@@ -1,4 +1,4 @@
-<script src="/js/annotate.js?v=39654943" xmlns:right></script>
+<script src="/js/annotate.js?v=248930357" xmlns:right></script>
 
 <form action="" enctype="multipart/form-data" id="annotform" name="annotform" method="post">
     <input type='hidden' name='myseq' id='myseq' value='1'>
@@ -84,6 +84,13 @@
 
 </form>
 <br>
+
+<!--
+<script>
+$('#annotform > div:nth-child(5) > div.div-border > div > div:nth-child(1) > div.btn-group > button').click()
+$('#functional_services_container > div:nth-child(1) > div.btn-group > button').click()
+</script>
+-->
 
 <button onclick="exec_genotate_single();" style="width: 100%; font-size: 1.3em;" class="btn btn-secondary active">
     Annotate transcript

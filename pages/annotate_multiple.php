@@ -1,4 +1,4 @@
-<script src="/js/annotate.js?v=39654943" xmlns:right></script>
+<script src="/js/annotate.js?v=248930357" xmlns:right></script>
 
 <form action="" enctype="multipart/form-data" id="annotform" name="annotform" method="post"
       onsubmit="return checkEntries();">

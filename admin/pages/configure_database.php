@@ -35,7 +35,7 @@ if (!empty ($_POST ['database']) && !empty ($_POST ['host']) && !empty ($_POST [
             $mysqli->query($request) or die ("Failed on database request: ($request) " . $mysqli->error);
             $mysqli->select_db($database);
             create_tables($mysqli);
-            insert_services($mysqli);
+            insert_algorithms($mysqli);
             header("Refresh:0");
         }
     }

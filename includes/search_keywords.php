@@ -1,18 +1,18 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/connect_database.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/services_info.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/algorithms_info.php");
 
 $connexion = connect_database();
-$service = $_GET['service'];
+$service = $_GET['algorithm'];
 $dataset = $_GET['dataset'];
 
-$services_info = get_services_info();
+$services_info = get_algorithms_info();
 $info_service = $services_info[$service];
 $description = $info_service['description'];
 
 function get_annotations($service, $dataset, $connexion)
 {
-    $request = "SELECT annotation.name, GROUP_CONCAT(distinct(SUBSTRING(annotation.description,1,200))) AS description FROM annotation,analysis WHERE service='$service' AND annotation.analysis_id = analysis.analysis_id ";
+    $request = "SELECT annotation.name, GROUP_CONCAT(distinct(SUBSTRING(annotation.description,1,200))) AS description FROM annotation,analysis WHERE algorithm='$service' AND annotation.analysis_id = analysis.analysis_id ";
     if (!empty ($dataset) && $dataset != "") {
         $request .= " AND analysis.analysis_id='{$dataset}' ";
     }
@@ -34,7 +34,7 @@ if (mysqli_num_rows($results) > 0) {
     echo "<input class='form-control' type='number' id='min_$service' name='min_$service' min='0' max='99' value='1' style='padding:0;margin:0;margin-left:5px;width:4em;border:none;border-radius:0;text-align:right;'>";
     echo "<div data-toggle='tooltip' data-placement='top' title='$description'>";
     echo "<label onclick=\"toggle_names('$service');\" data-toggle='buttons' class='btn btn-default btn-sm' for='$service' style='border:1px solid grey;border-radius:0;width:145px;'>$service";
-    echo "<input type='checkbox' name='service[]' id='$service' value='$service' unchecked style='display:none;'></label>";
+    echo "<input type='checkbox' name='algorithm[]' id='$service' value='$service' unchecked style='display:none;'></label>";
     echo "</div>";
     echo "<input class='form-control' type='number' id='max_$service' name='max_$service' min='1' max='100' value='100' style='padding:0;margin:0;width:4em;border:none;border-radius:0;text-align:right;'>";
     echo "</div>";

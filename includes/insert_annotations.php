@@ -26,7 +26,7 @@ function insert_annotations($path, $analysis_id, $region_id_array, $connexion)
         while (!feof($file_handle)) {
             $line = fgets($file_handle);
             if ($line != "") {
-                $request = "INSERT INTO annotation (analysis_id, region_id, service, begin, end, name, description) VALUES (";
+                $request = "INSERT INTO annotation (analysis_id, region_id, algorithm, begin, end, name, description) VALUES (";
                 $tab = explode("\t", $line);
                 $request .= " '" . $analysis_id . "',";
                 $request .= " '" . $region_id_array[intval($tab[0])] . "',";

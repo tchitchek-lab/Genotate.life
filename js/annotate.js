@@ -73,6 +73,16 @@ function check_start_codon() {
     return codon_isvalid;
 }
 
+function check_tools() {
+    var Checked_BLASTN = $('input[name="BLASTN[]"]:checked').length > 0;
+    var Checked_BLASTP = $('input[name="BLASTP[]"]:checked').length > 0;
+    var Checked_TOOL = $('input[name="algorithm[]"]:checked').length > 0;
+    if (! Checked_BLASTN && ! Checked_BLASTP && ! Checked_TOOL) {
+        return false;
+    }
+    return true;
+}
+
 function check_stop_codon() {
     const start_codon = document.getElementById("stop_codon").value.toUpperCase().split(",");
     let codon_isvalid = true;
@@ -124,9 +134,12 @@ function checkEntries() {
     if (!check_email()) {
         form_valid = false;
     }
-
     if (!form_valid) {
         alert("Please complete or change the highlighted inputs.");
+    }
+    else if (!check_tools()) {
+        form_valid = false;
+        alert("Please select at least one homology annotation dataset or one functional annotation algorithm.");
     }
     return form_valid;
 }
@@ -146,7 +159,11 @@ function checkEntries_myseq() {
         form_valid = false;
     }
     if (!form_valid) {
-        alert("Please complete or change the highlighted inputs.\n");
+        alert("Please complete or change the highlighted inputs.");
+    }
+    else if (!check_tools()) {
+        form_valid = false;
+        alert("Please select at least one homology annotation dataset or one functional annotation algorithm.");
     }
     return form_valid;
 }

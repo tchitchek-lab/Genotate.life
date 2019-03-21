@@ -72,7 +72,6 @@ $path_includes = "";
         $current_request .= "transcript.size AS transcript_size, ";
         $current_request .= "transcript.relative_transcript_id AS relative_transcript_id, ";
         $current_request .= "analysis.name AS dataset_name ";
-       // $current_request .= "analysis.myseq AS myseq ";
         $current_request .= "FROM region, transcript, analysis ";
         $current_request .= "WHERE region.transcript_id = transcript.transcript_id ";
         $current_request .= "AND region.analysis_id = analysis.analysis_id ";
@@ -82,11 +81,11 @@ $path_includes = "";
         $row = mysqli_fetch_array($results, MYSQLI_ASSOC);
 
         $annotations = array();
-        $request_annot = "SELECT * FROM annotation WHERE region_id=$region_id ORDER BY service, begin";
+        $request_annot = "SELECT * FROM annotation WHERE region_id=$region_id ORDER BY algorithm, begin";
         $results_annot = mysqli_query($connexion, $request_annot) or die("SQL Error:<br>" . $request_annot . "<br>" . mysqli_error($connexion));
         while ($row_annot = mysqli_fetch_array($results_annot, MYSQLI_ASSOC)) {
             $annotation = array();
-            $annotation['service'] = $row_annot['service'];
+            $annotation['algorithm'] = $row_annot['algorithm'];
             $annotation['name'] = $row_annot['name'];
             $annotation['begin'] = $row_annot['begin'];
             $annotation['end'] = $row_annot['end'];
@@ -95,7 +94,7 @@ $path_includes = "";
         }
 
         $services_color = array();
-        $request_color = "SELECT * from service";
+        $request_color = "SELECT * from algorithm";
         $results_color = mysqli_query($connexion, $request_color) or die ("SQL Error:<br>$request_color<br>" . mysqli_error($connexion));
         while ($row_color = mysqli_fetch_array($results_color, MYSQLI_ASSOC)) {
             $services_color[$row_color['name']] = $row_color['color'];
@@ -144,8 +143,6 @@ $path_includes = "";
         $height = ($nbrec + 1.5) * 18;
         echo "<div id='region_viewer_$region_id' style='width:100%;background-color:white;margin-bottom:20px;'>";
         echo "<form action='javascript:void(0);' method='post' id='update_svg_$region_id'>";
-        echo "<div class='div-border-title'>";
-
         if ($region_strand == "+") {
             $region_strand_text = "positive";
         }else{
@@ -153,9 +150,9 @@ $path_includes = "";
         }
 
         if ($region_coding == "coding") {
-            echo "$region_type ORF of " . number_format($region_size, 0, '.', ',') . " bases on transcript " . substr($transcript_name, 0, 15) . " ({$region_strand_text} strand) ";
+            echo "<div class='div-border-title'>$region_type coding ORF of " . number_format($region_size, 0, '.', ',') . " bases on transcript " . substr($transcript_name, 0, 15) . " ({$region_strand_text} strand) ";
         } else {
-            echo "potential ncRNA of " . number_format($region_size, 0, '.', ',') . " bases on transcript " . substr($transcript_name, 0, 15) . " ({$region_strand_text} strand) ";
+            echo "<div class='div-border-title' style='background-color:grey;'>potential non-coding RNA of " . number_format($region_size, 0, '.', ',') . " bases on transcript " . substr($transcript_name, 0, 15) . " ({$region_strand_text} strand) ";
         }
         echo "<button onclick=\"viewer('$region_id',$('#region_viewer_$region_id').width(),$('#region_viewer_$region_id').height()+100);\" class='btn btn-sm btn-info' style='height:30px;width:30px;border:none;float:right;color: #fff;font-size:15px;'><span class='glyphicon glyphicon-resize-full' aria-hidden='true'></span></button>";
         echo "</div>";
@@ -181,10 +178,10 @@ $path_includes = "";
         // SERVICES SECTION
         echo "<div data-toggle='buttons' style='width:100%;'>";
         $services = array();
-        $request = "SELECT distinct(service) FROM annotation WHERE region_id='$region_id' ORDER BY service";
+        $request = "SELECT distinct(algorithm) FROM annotation WHERE region_id='$region_id' ORDER BY algorithm";
         $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
         while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-            $service = $row ['service'];
+            $service = $row ['algorithm'];
             array_push($services, $service);
             echo "<label id='{$service}_{$region_id}' class='btn btn-xs btn-default active'>";
             echo "<input style='display:none;' class='checkbox_$region_id' type='checkbox' name='services[]' id='$service' value='$service' checked>$service</label>";
@@ -324,16 +321,16 @@ $path_includes = "";
         echo "<div id='details_$region_id'><div class='panel list-group' style='width:100%;'>";
         echo "<div id='function_$region_id' class='sublinks collapse' style='width:100%;'>";
         echo "<table style='table-layout: fixed;font-size:10px;width:100%'>";
-        echo "<thead><tr><td onclick=\"sortTable('table_fa_$region_id',0,1)\" style='cursor: pointer;width:15%;font-size:10px;'>service name<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td>";
+        echo "<thead><tr><td onclick=\"sortTable('table_fa_$region_id',0,1)\" style='cursor: pointer;width:15%;font-size:10px;'>algorithm name<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_fa_$region_id',1,1)\" style='cursor: pointer;width:25%;font-size:10px;'>annotation name<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_fa_$region_id',2,1)\" style='cursor: pointer;width:10%;font-size:10px;text-align:center;'>begin<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-order' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_fa_$region_id',3,1)\" style='cursor: pointer;width:10%;font-size:10px;text-align:center;'>end<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-order' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_fa_$region_id',4,1)\" style='cursor: pointer;width:40%;font-size:10px;text-align:center;'>description<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td></tr></thead>";
-        $request = "SELECT service, name, begin, end, description FROM annotation WHERE region_id='$region_id' AND service!='BLASTN' AND service!='BLASTP' ORDER BY service, begin";
+        $request = "SELECT algorithm, name, begin, end, description FROM annotation WHERE region_id='$region_id' AND algorithm!='BLASTN' AND algorithm!='BLASTP' ORDER BY algorithm, begin";
         $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
         echo "<tbody id='table_fa_$region_id'>";
         while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-            echo "<tr><td>" . $row ['service'] . "</td>";
+            echo "<tr><td>" . $row ['algorithm'] . "</td>";
             echo "<td>" . $row ['name'] . "</td>";
             echo "<td style='text-align:right'>" . number_format($row ['begin'] + 1, 0, '.', ',') . "</td>";
             echo "<td style='text-align:right'>" . number_format($row ['end'] + 1, 0, '.', ',') . "</td>";
@@ -344,7 +341,7 @@ $path_includes = "";
         echo "</div>";
         echo "<div id='similarity_$region_id' class='sublinks collapse' style='width:100%;'>";
         echo "<table style='table-layout: fixed;width:100%;font-size:10px;'>";
-        echo "<thead><tr><td onclick=\"sortTable('table_$region_id',0,1)\" style='cursor: pointer;width:5%;font-size:10px;'>service name<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td>";
+        echo "<thead><tr><td onclick=\"sortTable('table_$region_id',0,1)\" style='cursor: pointer;width:5%;font-size:10px;'>algorithm name<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_$region_id',1,1)\" style='cursor: pointer;width:20%;font-size:10px;'>annotation name<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_$region_id',2,1)\" style='cursor: pointer;width:6%;font-size:10px;text-align:center;'>begin<br><span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-order' aria-hidden='true'></span></td>";
         echo "<td onclick=\"sortTable('table_$region_id',3,1)\" style='cursor: pointer;width:6%;font-size:10px;text-align:center;'>end<br><span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-order' aria-hidden='true'></td>";
@@ -353,7 +350,7 @@ $path_includes = "";
         echo "<td onclick=\"sortTable('table_$region_id',6,1)\" style='cursor: pointer;width:5%;font-size:10px;'>subject cover<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-order' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_$region_id',7,1)\" style='cursor: pointer;width:5%;font-size:10px;'>bitscore<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-order' aria-hidden='true'></td>";
         echo "<td onclick=\"sortTable('table_$region_id',8,1)\" style='cursor: pointer;width:30%;font-size:10px;'>description<span style='font-size:16px;float:right;' class='glyphicon glyphicon-sort-by-alphabet' aria-hidden='true'></td></tr></thead>";
-        $request = "SELECT service, name, begin, end, description FROM annotation WHERE region_id='$region_id' AND (service='BLASTN' OR service='BLASTP') ORDER BY service, begin";
+        $request = "SELECT algorithm, name, begin, end, description FROM annotation WHERE region_id='$region_id' AND (algorithm='BLASTN' OR algorithm='BLASTP') ORDER BY algorithm, begin";
         $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
         echo "<tbody id='table_$region_id'>";
         while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
@@ -368,7 +365,7 @@ $path_includes = "";
             $subject_cover = rtrim($subject_cover, ",.");
             $bitscore = rtrim($bitscore, ",.");
             strrpos($annot_description, "bitscore:");
-            echo "<tr><td>" . $row ['service'] . "</td>";
+            echo "<tr><td>" . $row ['algorithm'] . "</td>";
             echo "<td>" . $row ['name'] . "</td>";
             echo "<td style='text-align:right'>" . number_format($row ['begin'] + 1, 0, '.', ',') . "</td>";
             echo "<td style='text-align:right'>" . number_format($row ['end'] + 1, 0, '.', ',') . "</td>";

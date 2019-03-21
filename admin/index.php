@@ -12,7 +12,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/includes/tooltips.php');
 $connexion = connect_database();
 
 $paths = read_configfile();
-define("USER_MODE", "restricted");
+define("USER_MODE", "no_restricted");
 
 ?>
 
