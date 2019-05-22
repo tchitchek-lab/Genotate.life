@@ -27,13 +27,6 @@
 //    return array($paths);
 //}
 
-$status = "";
-if (USER_MODE == "restricted") {
-    $status = "disabled";
-} else {
-    $status = "";
-}
-
 if (isset ($_POST['clean_tmp'])) {
     $request = "SELECT * FROM analysis WHERE status = 'computing'";
     $results = mysqli_query($connexion, $request) or die ("SQL Error:<br>$request<br>" . mysqli_error($connexion));
@@ -48,7 +41,6 @@ if (isset ($_POST['clean_tmp'])) {
     //@array_map('unlink', glob($dir));
 }
 
-$file_path = $_SERVER['DOCUMENT_ROOT'] . "../binaries/genotate.config";
 $genotatewebconfig = array();
 $file_path = $_SERVER['DOCUMENT_ROOT'] . "/genotateweb.config.php";
 if (file_exists($file_path)) {
@@ -61,6 +53,11 @@ if (file_exists($file_path)) {
             $genotatewebconfig[$splitline[0]] = $splitline[1];
         }
     }
+}
+
+$status = "";
+if ($paths['USER_MODE'] == "restricted") {
+    $status = "disabled";
 }
 
 $genotate_dir = $_SERVER['DOCUMENT_ROOT'] . "/../";
@@ -102,7 +99,6 @@ $space = floor(100 * $usedspace / $totalspace);
     <form id='form_genotateweb_config' name='form_genotateweb_config' method='post'>
         <input type='hidden' id='PASS' name='PASS' value=''>
         <?php
-        $file_path = $genotate_dir . "/binaries/genotate.config";
         echo "<table style='width: 100%;' class='manage_tables'>";
         echo "<thead><tr>";
         echo("<td style='width: 40%;'>parameter</td>");
@@ -123,7 +119,6 @@ $space = floor(100 * $usedspace / $totalspace);
 </div>
 <div class="div-border" style="margin-bottom:10px;">
     <?php
-    $file_path = $genotate_dir . "/binaries/genotate.config";
     echo "<table style='width: 100%;' class='manage_tables'>";
     echo "<thead><tr>";
     echo("<td style='width: 30%;'>name</td>");
@@ -186,7 +181,10 @@ $space = floor(100 * $usedspace / $totalspace);
         echo("<td style='width: 10%;text-align:center;'>available</td>");
         echo("<td>path</td>");
         echo "</tr></thead>";
-        $file_path = $_SERVER['DOCUMENT_ROOT'] . "../binaries/genotate.config";
+		$file_path = $_SERVER['DOCUMENT_ROOT'] . "/../binaries/genotate.config";
+		if (!file_exists($file_path)) {
+			echo("Config file genotate.config not found. $file_path");
+		}
         if (file_exists($file_path)) {
             $configfile = fopen($file_path, "r");
             while (!feof($configfile)) {
@@ -208,7 +206,7 @@ $space = floor(100 * $usedspace / $totalspace);
                             echo("<td><span style='text-align:center;background:#5cb85c;color:white;width:100%;'><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></span></td>");
                         }
                     }
-                    if (USER_MODE != "restricted") {
+                    if ($paths['USER_MODE'] != "restricted") {
                         echo("<td><input type='text' value='$file_path' style='width:100%' id='$service' name='$service' onchange='update_genotate_config()'></td>");
                     } else {
                         echo("<td>$file_path</td>");

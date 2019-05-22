@@ -102,7 +102,7 @@ function get_algorithms_info()
     $services_info_service ['max'] = 2;
     $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Determine binding site to a specific MHC class I molecule";
-    $services_info_services ['NETMHCI'] = $services_info_service;
+    $services_info_services ['MHCI'] = $services_info_service;
 
     $services_info_service = array();
     $services_info_service ['color'] = "#7d15eb";
@@ -112,7 +112,7 @@ function get_algorithms_info()
     $services_info_service ['max'] = 2;
     $services_info_service ['type'] = "coding";
     $services_info_service ['description'] = "Determine binding site to a specific MHC class II molecule";
-    $services_info_services ['NETMHCII'] = $services_info_service;
+    $services_info_services ['MHCII'] = $services_info_service;
 
     $services_info_service = array();
     $services_info_service ['color'] = "#db7b0d";

@@ -6,7 +6,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/config_file.php");
 
 <?php
 $disabled_status = "";
-if (USER_MODE == "restricted") {
+if ($paths['USER_MODE'] == "restricted") {
     $disabled_status = "disabled";
 }
 ?>

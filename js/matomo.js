@@ -5,7 +5,7 @@ _paq.push(['enableLinkTracking']);
 (function() {
     const u = "https://www.athenastatistics.org/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '3']);
+    _paq.push(['setSiteId', '2']);
     const d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
 })();

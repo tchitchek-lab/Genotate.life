@@ -70,9 +70,9 @@
         identified transcript annotations, search for transcript having specific annotations, and to download the computed results. </p>
     <p>This platform also provides administrative interfaces to manage annotation results and homology references.
         Finally, the platform provides interfaces to configure the software dependencies and database parameters. </p>
-    <img src="/img/functionalities.png?v=2" alt="/functionalities.png?v=2" style="width: 100%;">
+    <img src="/img/functionalities.png?v=201" alt="/functionalities.png?v=201" style="width: 100%;">
     <label>Overview of the Genotate user interface</label>
-    <img src="/img/admin.png?v=2" alt="/functionalities.png?v=2" style="width: 100%;">
+    <img src="/img/admin.png?v=201" alt="/functionalities.png?v=201" style="width: 100%;">
     <label>Overview of the Genotate administration user interface</label>
 </div>
 
@@ -80,10 +80,20 @@
     workflow
 </div>
 <div class="div-border" style="margin-bottom: 10px;">
-    <p>The Genotate annotation pipeline takes in input one fasta file containing a single transcript or multiple transcripts. The annotation steps and options are defined using the web interface. For each reconstructed transcript, Genotate first detects the set of all possible ORFs with the purpose of annotating them. All ORFs detected by Genotate are annotated based on: (i) their homology with other reference sequences, also named homology annotations; and (ii) the presence of peptidic functional elements on their resulting translated proteins, also named functional annotations. Homology annotations are computed based on any reference dataset of transcriptomic or proteomic sequences specified by users or available by default in Genotate. The functional annotations are computed based on a compendium of publicly available computational tools and databases specified by the user.</p>
+    <p>The Genotate annotation pipeline takes in input one fasta file containing a single transcript or multiple transcripts. 
+	The annotation steps and options are defined using the web interface. 
+	For each reconstructed transcript, Genotate first separate coding and non coding transcript.
+	Coding transcript contain one or multiple encoding ORF.
+	Genotate detects the set of all possible ORFs, the ORF with a protein coding potential over a defined threshold are translated for further annotation.
+	The transcript without any protein coding ORF are further annotated as noncoding transcript.
+	All transcript are annotated based on: 
+	(i) their homology with other reference sequences, also named homology annotations; and 
+	(ii) for coding transcript, the presence of peptidic functional elements on their resulting translated proteins, also named functional annotations. 
+	Homology annotations are computed based on any reference dataset of nucleic, transcriptomic or proteomic sequences specified by users or available by default in Genotate. 
+	The functional annotations are computed based on a compendium of publicly available computational tools and databases specified by the user.</p>
 
     <p>A large collection of annotation services and databases are available in Genotate. Indeed, reference transcriptomic and proteomic datasets from the NONCODE, UniRef, and Ensembl databases are available (consisting of more than 100 animal species). Additionally, multiple protein annotation software are available (consisting in around 30 different algorithms). Non-coding transcripts can also be analyzed with Genotate.</p>
-        <img src="/img/workflow.png?v=2" alt="workflow.png?v=2" style="width: 100%;">
+        <img src="/img/workflow.png?v=201" alt="workflow.png?v=201" style="width: 100%;">
     <label>Overview of the Genotate annotation workflow</label>
 </div>
 
@@ -99,10 +109,10 @@
         'N'. Example sequences are available in the interface to annotate a single transcript. </p>
     <p>Each interface provides the different options to parametrize the ORF detection, homology, and functional
         analyses.</p>
-    <img src="/img/single_transcript_annotation.png?v=2" alt="/single_transcript_annotation.png?v=2"
+    <img src="/img/single_transcript_annotation.png?v=201" alt="/single_transcript_annotation.png?v=201"
          style="width: 50%; margin-left: 25%">
     <label>Overview of the interface to annotate a single transcript </label>
-    <img src="/img/multiple_transcripts_annotation.png?v=2" alt="/multiple_transcripts_annotation.png?v=2"
+    <img src="/img/multiple_transcripts_annotation.png?v=201" alt="/multiple_transcripts_annotation.png?v=201"
          style="width: 50%; margin-left: 25%">
     <label>Overview of the interface to annotate a multiple transcripts</label>
 
@@ -116,14 +126,15 @@
         (which initiate and end the ORFs) can be specified by users. By default, start codon is set to 'ATG' and stop
         codons to 'TAG, TGA, and TAA'. ORFs with a length lower than a threshold can be filtered to avoid
         interpretations of sequences with no biological meaning. Inner ORFs (which consist of nested ORF sequences) can
-        also be identified as well as outside ORF (which consist of ORFs lacking either the start or stop codon). By
-        default, the complete transcript sequence is conserved to be annotated as a non-coding RNA. By default, ORFs are
+        also be identified as well as outside ORF (which consist of ORFs lacking either the start or stop codon). 
+		Each ORF is by default checked by CPAT to measure its coding potential. By
+        default, the transcript without any coding ORF are annotated as a non-coding RNA. By default, ORFs are
         also identified on the reverse complemented transcript sequence.</p>
-    <img src="/img/orf_identification_panel.png?v=2" alt="orf_identification_panel.png?v=2"
+    <img src="/img/orf_identification_panel.png?v=201" alt="orf_identification_panel.png?v=201"
          style="width: 50%; margin-left: 25%">
     <label>Overview of the ORF detection panel</label>
     <p>In detail, the protein associated to a transcript are obtained by detecting all the possible ORF on the transcript. A frame is composed of nucleotide triplets called codon. The transcript sequence is divided into three frames, with a shift of one base on the sequence strand. The transcript sequence can also be reversed, and the nucleic base complemented to obtain the complementary sequence. An Open Reading Frame begins with a codon start and ends with a codon stop. A codon can be translated to an amino acid or end of translation signal. A codon encoding the beginning of the translation, such as 'ATG', is called codon start. A codon encoding the end of the translation, such as 'TAG, TGA, TAA', is called codon stop. A protein is obtained from the translated sequence of an Open Reading Frame.</p>
-    <img src="/img/orf_identification.png?v=2" alt="orf_identification.png?v=2" style="width: 50%; margin-left: 25%">
+    <img src="/img/orf_identification.png?v=201" alt="orf_identification.png?v=201" style="width: 50%; margin-left: 25%">
     <label>ORF identification method</label>
 </div>
 
@@ -132,10 +143,11 @@
 </div>
 <div class="div-border" style="margin-bottom: 10px;">
     <p>Homology annotations are computed based on any reference dataset of transcriptomic or proteomic sequences specified by users or available by default in Genotate. </p>
-    <img src="/img/references.png?v=2" alt="references.png?v=2" style="width: 100%;">
+    <img src="/img/references.png?v=201" alt="references.png?v=201" style="width: 100%;">
     <label>Overview of the possible homology references</label>
     <p>Sequences homologies are identified using the BLAST algorithm. Homology results can be filtered based on the percentage identity match, the percentage of query sequence coverage, and the percentage of reference sequence coverage.</p>
-    <img src="/img/interface_references.png?v=2" alt="references.png?v=2" style="width: 100%;">
+    <img src="/img/interface_references.png?v=201" alt="interface_references.png?v=201" style="width: 50%;">
+	<img src="/img/references_scores.png?v=201" alt="references_scores.png?v=201" style="width: 50%;float:right">
     <label>Overview of the homology annotation panel</label>
 </div>
 
@@ -148,7 +160,7 @@
         selected in the functional annotation panel. For each algorithm, a threshold or e-value parameter is available to
         filter the annotation results.
     </p>
-    <img src="/img/functional_annotation_panel.png?v=2" alt="/functional_annotation_panel.png?v=2"
+    <img src="/img/functional_annotation_panel.png?v=201" alt="/functional_annotation_panel.png?v=201"
          style="width: 50%; margin-left: 25%">
     <label>Overview of the homology annotation panel</label>
     <p>In details, the functional annotation are computed based on a large set of publicly available computational
@@ -158,7 +170,7 @@
         different databases such as PFAM, SUPERFAMILY, and PANTHER. </p>
     <p>The functional annotation are computed based on multiple other prediction algorithms, such as TMHMM,
         SIGNALP, and PROP.</p>
-    <img src="/img/functional.png?v=2" alt="functional.png?v=2" style="width: 100%;">
+    <img src="/img/functional.png?v=201" alt="functional.png?v=201" style="width: 100%;">
     <label>Overview of the functional annotation algorithms</label>
     <p></p>
 </div>
@@ -173,7 +185,7 @@
         represents the elements identified on the transcript. Moreover, a result summary panel provides the number of
         ORFs identifies, the number of identified annotations, and allows to download the associated sequences.
         </p>
-    <img src="/img/annotation_results.png?v=2" alt="annotation_results.png?v=2" style="width: 50%; margin-left: 25%">
+    <img src="/img/annotation_results.png?v=201" alt="annotation_results.png?v=201" style="width: 50%; margin-left: 25%">
     <label>Overview of the annotation results interface</label>
 </div>
 
@@ -183,16 +195,14 @@
     <p>Once annotated, the transcript annotation viewer panel provides a graphical representation of the identified
         ORFs. The transcript sequence is represented in blue on the top of the representation. ORFs identified on the
         transcript sequence are represented under the '> > >' symbols. ORFs identified on the reverse complemented
-        transcript sequence are represented under the '< < <' symbol. Identified inner ORFs (ORFs nested in a larger
-        ORFs), outside ORFs (ORFs lacking a start or stop codon), and ncRNA are also represented in this overview
-        viewer.</p>
-    <img src="/img/transcript_viewer.png?v=2" alt="/transcript_viewer.png?v=2" style="width: 100%;">
+        transcript sequence are represented under the '< < <' symbol.</p>
+    <img src="/img/transcript_viewer.png?v=201" alt="/transcript_viewer.png?v=201" style="width: 100%;">
     <label>transcript viewer panel</label>
-    <p>Each annotated ncRNA and ORF are represented by an interactive annotate viewer. This panel provides an
+    <p>For each transcript, either the ncRNA (possibly two for both strand) or the identified ORF(s) are represented by an interactive annotate viewer. This panel provides an
         interactive annotation representation, functional annotation descriptions, homology annotation descriptions.
         Furthermore, the viewer allow the possibility to search transcript, ORFs and proteins sequences in NCBI
         databases.</p>
-    <img src="/img/panel.png?v=2" alt="panel.png?v=2" style="width: 100%;">
+    <img src="/img/panel.png?v=201" alt="panel.png?v=201" style="width: 100%;">
     <label>annotation viewer panel</label>
     <p>Multiple actions are available through the annotation viewer, such as:</p>
     <ul>
@@ -221,15 +231,15 @@
         limit the exploration of annotated transcripts. For each identified annotation, a specific annotation can be
         selected. It is also possible to search for any annotation of an algorithm with a minimal and maximal number of
         annotation.</p>
-    <img src="/img/search.png?v=2" alt="/search.png?v=2" style="width: 100%;">
+    <img src="/img/search.png?v=201" alt="/search.png?v=201" style="width: 100%;">
     <label>annotation search filters panel</label>
     <p>A summary panel provide the number of ncRNA and ORFs matching the annotation filters, and allow to download the
         sequences and the annotations.</p>
-    <img src="/img/results_statistics.png?v=2" alt="/results_statistics.png?v=2" style="width: 100%;">
+    <img src="/img/results_statistics.png?v=201" alt="/results_statistics.png?v=201" style="width: 100%;">
     <label>annotation search results summary panel</label>
     <p>The ncRNA and ORF matching the annotation filters are displayed in the result panel, with 20 results by page.
         They can be ordered by length, begin position, and end position.</p>
-    <img src="/img/results.png?v=2" alt="/results.png?v=2" style="width: 100%;">
+    <img src="/img/results.png?v=201" alt="/results.png?v=201" style="width: 100%;">
     <label>annotation search results panel</label>
 </div>
 
@@ -241,12 +251,12 @@
     <p>The annotation management interface list the annotated transcripts datasets with their computation current status,
         annotation parameters, results, and the possibility to rename or delete them. For each dataset, the transcripts
         sequences, the ORFs sequences, and the annotation can be downloaded.</p>
-    <img src="/img/manage_annotations.png?v=2" alt="/manage_annotations.png?v=2" style="width: 100%;">
+    <img src="/img/manage_annotations.png?v=201" alt="/manage_annotations.png?v=201" style="width: 100%;">
     <label></label>
     <p>The transcript dataset details panel provides the dataset information, ORF identification parameters, functional
         annotation algorithms and their threshold or e-value, similarity annotation references and their identity and
         coverage threshold are available.</p>
-    <img src="/img/annotation_dataset_details.png?v=2" alt="/annotation_dataset_details.png?v=2" style="width: 100%;">
+    <img src="/img/annotation_dataset_details.png?v=201" alt="/annotation_dataset_details.png?v=201" style="width: 100%;">
     <label>annotation dataset details panel</label>
     <p></p>
 </div>
@@ -260,7 +270,7 @@
     <p>Datasets of nucleic or proteomic sequences can be used as
         references for annotating submitted transcripts by homology. Admin users can create homology reference by
         providing a FASTA file or an ftp link.</p>
-    <img src="/img/create_reference.png?v=2" alt="/create_reference.png?v=2" style="width: 100%;">
+    <img src="/img/create_reference.png?v=201" alt="/create_reference.png?v=201" style="width: 100%;">
     <label>Overview of the interface to create homology references</label>
     <p></p>
 </div>
@@ -271,7 +281,7 @@
         sequence. Through this interface, it is possible to rename or delete the homology reference. The details of
         each homology reference can be displayed to provide the
         release, the species, the sequence type, and the description of the reference.</p>
-    <img src="/img/manage_references.png?v=2" alt="/manage_references.png?v=2" style="width: 100%;">
+    <img src="/img/manage_references.png?v=201" alt="/manage_references.png?v=201" style="width: 100%;">
     <label>Overview of the interface to manage references</label>
 </div>
 <div class="anchor div-border-subtitle" style='width: 100%;' id='<?php echo $anchor_id++; ?>'>Import homology references
@@ -281,13 +291,13 @@
     <p>Transcriptomic and proteomic datasets from the NONCODE, UniRef and Ensembl databases can be easily imported as
         reference homologies. For each dataset, a description and an external link to the public database are
         provided.</p>
-    <img src="/img/external_references_noncode.png?v=2" alt="/external_references_noncode.png?v=2" style="width: 100%;">
+    <img src="/img/external_references_noncode.png?v=201" alt="/external_references_noncode.png?v=201" style="width: 100%;">
     <label>17 datasets from the NONCODE database can be easily imported in Genotate</label>
     <p></p>
-    <img src="/img/external_references_uniref.png?v=2" alt="/external_references_uniref.png?v=2" style="width: 100%;">
+    <img src="/img/external_references_uniref.png?v=201" alt="/external_references_uniref.png?v=201" style="width: 100%;">
     <label>5 datasets from the UniRef database can be easily imported in Genotate</label>
     <p></p>
-    <img src="/img/external_references_ensembl.png?v=2" alt="/external_references_ensembl.png?v=2" style="width: 100%;">
+    <img src="/img/external_references_ensembl.png?v=201" alt="/external_references_ensembl.png?v=201" style="width: 100%;">
     <label>Around 300 datasets from the Ensembl database can be easily imported in Genotate</label>
     <p></p>
 </div>
@@ -303,7 +313,7 @@
     <p>Genotate annotation computations can be parallelized for efficient computations of large transcript datasets. The
         pipeline can execute simultaneously multiple process, called workers. The number of workers is configured by
         default to 8 and can be specified by the users.</p>
-    <img src="/img/parallelization.png?v=2" alt=img/parallelization.png?v=2 style="width: 100%;">
+    <img src="/img/parallelization.png?v=201" alt=img/parallelization.png?v=201 style="width: 100%;">
     <label>parallelization strategy</label>
     <p>For each annotation query, the whole pool of identified ncRNAs and ORFs is split in subsets of 100 sequences. For
         each subset, sequences are annotated by the different algorithms. Each algorithm annotation is computed by
@@ -322,13 +332,13 @@
         interface and contains the path to each folder and binaries required to run properly. The annotation pipeline
         binaries are automatically downloaded from GitHub in a binaries folder. The folders are automatically generated
         if they do not exist.</p>
-    <img src="/img/dependencies_configuration_1.png?v=2" alt="/dependencies_configuration_1.png?v=2" style="width: 100%;">
+    <img src="/img/dependencies_configuration_1.png?v=201" alt="/dependencies_configuration_1.png?v=201" style="width: 100%;">
     <label>web platform dependencies panel</label>
     <p>The annotation pipeline configuration file 'binaries/genotate.config' is required to use the annotation pipeline
         dependencies panel. The annotation pipeline require annotation algorithms and similarity annotation datasets to
         be installed. Genotate annotation pipeline dependencies can be installed by following the instruction available
         at https://github.com/tchitchek-lab/genotate.life.</p>
-    <img src="/img/dependencies_configuration_2.png?v=2" alt="/dependencies_configuration_2.png?v=2" style="width: 100%;">
+    <img src="/img/dependencies_configuration_2.png?v=201" alt="/dependencies_configuration_2.png?v=201" style="width: 100%;">
     <label>annotation pipeline dependencies panel</label>
     <p></p>
 </div>
@@ -337,7 +347,7 @@
 <div class="div-border" style="margin-bottom: 10px;">
     <p>This interface allows modifying the color associated to each homology and functional annotations in the graphical
         representations of transcript sequences.</p>
-    <img src="/img/annotation_colors.png?v=2" alt=img/annotation_colors.png?v=2 style="width: 100%;">
+    <img src="/img/annotation_colors.png?v=201" alt=img/annotation_colors.png?v=201 style="width: 100%;">
     <label>annotation colors panel</label>
 </div>
 <div class="anchor div-border-subtitle" style='width: 100%;' id='<?php echo $anchor_id++; ?>'>Database configuration
@@ -350,7 +360,7 @@
         here the hostname, database name, user name, and password. The database can be reset using this interface. The
         database can be created if the database does not
         already exist. </p>
-    <img src="/img/database_configuration.png?v=2" alt="/database_configuration.png?v=2" style="width: 100%;">
+    <img src="/img/database_configuration.png?v=201" alt="/database_configuration.png?v=201" style="width: 100%;">
     <label>database configuration panel</label>
     <p></p>
 </div>

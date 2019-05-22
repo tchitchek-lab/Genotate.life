@@ -78,7 +78,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/admin/includes/menu_admin.php");
         <div id="content-top-margin" style='width:100%;height:0;padding:15px;'></div>
 
         <?php
-        if (USER_MODE == "restricted") {
+        if ($paths['USER_MODE'] == "restricted") {
             echo '<div class="alert alert-warning" style="width:100%">';
             echo 'You are running Genotate in a restricted administration mode. None of your modification will be commited.';
             echo '</div>';

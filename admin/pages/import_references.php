@@ -6,7 +6,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/config_file.php");
 
 <?php
 $disabled_status = "";
-if (USER_MODE == "restricted") {
+if ($paths['USER_MODE'] == "restricted") {
     $disabled_status = "disabled";
 }
 ?>
@@ -155,13 +155,14 @@ $uniref_release ["UniProt_UniRef50"] = "2018_10";
 $uniref_link = array();
 $uniref_link ["UniRef_Swiss"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz";
 $uniref_link ["UniRef_trEMBL"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_trembl.fasta.gz";
+#$uniref_link ["UniRef_trEMBL"] = "ftp://193.70.41.172/uniprot_trembl.fasta.gz";
 $uniref_link ["UniProt_UniRef100"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref100/uniref100.fasta.gz";
 $uniref_link ["UniProt_UniRef90"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz";
 $uniref_link ["UniProt_UniRef50"] = "ftp://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50/uniref50.fasta.gz";
 
 $uniref_description = array();
 $uniref_description ["UniRef_Swiss"] = "Dataset of 558,681 protein sequences. Manually annotated and reviewed";
-$uniref_description ["UniRef_trEMBL"] = "Dataset of 133,507,323 protein sequences. Automatically annotated and not reviewed.";
+$uniref_description ["UniRef_trEMBL"] = "Dataset of 133,507,323 protein sequences. Automatically annotated but not reviewed.";
 $uniref_description ["UniProt_UniRef100"] = "Dataset of 164,828,188 protein sequences. Clusters of identical sequences and subfragments with 11 or more residues across multiple datasets.";
 $uniref_description ["UniProt_UniRef90"] = "Dataset of 83,681,116 proteins sequences. Clusters of sequences having at least a sequence identity of 90% and an overlap with the longest sequence in the cluster of 80% across multiple datasets.";
 $uniref_description ["UniProt_UniRef50"] = "Dataset of 31,036,088 protein sequences. Clusters of sequences having at least a sequence identity of 50% and an overlap with the longest sequence in the cluster of 80% across multiple datasets.";
@@ -170,8 +171,8 @@ $uniref_name = array();
 $uniref_name ["UniRef_Swiss"] = "UniProt_Swiss";
 $uniref_name ["UniRef_trEMBL"] = "UniProt_trEMBL";
 $uniref_name ["UniProt_UniRef100"] = "UniProt_UniRef100";
-$uniref_name ["UniProt_UniRef90"] = "UniProt_UniRef_90";
-$uniref_name ["UniProt_UniRef50"] = "UniProt_UniRef_50";
+$uniref_name ["UniProt_UniRef90"] = "UniProt_UniRef90";
+$uniref_name ["UniProt_UniRef50"] = "UniProt_UniRef50";
 
 $ncbi_species = array();
 $ncbi_species ["NCBI_nr"] = "multiple";
@@ -367,11 +368,11 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
             <td>UniProt_UniRef100</td>
             <?php
             if (in_array("UniProt_UniRef100", $blast_db_array)) {
-                echo "	<td><button class='btn btn-success btn-sm' id='UniRef_100' form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-success btn-sm' id='UniProt_UniRef100' form='' ".$disabled_status.">protein</button></td>";
             } else if (in_array("UniProt_UniRef100", $computing_blast_db_array)) {
-                echo "	<td><button class='btn btn-warning btn-sm' id='UniRef_100' form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-warning btn-sm' id='UniProt_UniRef100' form='' ".$disabled_status.">protein</button></td>";
             } else {
-                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_100' onclick=\"synchronize_uniref('UniRef_100','" . $uniref_species ["UniProt_UniRef100"] . "','" . $uniref_release["UniProt_UniRef100"] . "','" . $uniref_description ["UniProt_UniRef100"] . "','" . $uniref_link ["UniProt_UniRef100"] . "');\" form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-primary btn-sm' id='UniProt_UniRef100' onclick=\"synchronize_uniref('UniProt_UniRef100','" . $uniref_species ["UniProt_UniRef100"] . "','" . $uniref_release["UniProt_UniRef100"] . "','" . $uniref_description ["UniProt_UniRef100"] . "','" . $uniref_link ["UniProt_UniRef100"] . "');\" form='' ".$disabled_status.">protein</button></td>";
             }
             ?>
             <td>Dataset of 164,828,188 protein sequences.<br>
@@ -386,11 +387,11 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
             <td>UniProt_UniRef90</td>
             <?php
             if (in_array("UniProt_UniRef90", $blast_db_array)) {
-                echo "	<td><button class='btn btn-success btn-sm' id='UniRef_90' form='' $disabled_status>protein</button></td>";
+                echo "	<td><button class='btn btn-success btn-sm' id='UniProt_UniRef90' form='' $disabled_status>protein</button></td>";
             } else if (in_array("UniProt_UniRef90", $computing_blast_db_array)) {
-                echo "	<td><button class='btn btn-warning btn-sm' id='UniRef_90' form='' $disabled_status>protein</button></td>";
+                echo "	<td><button class='btn btn-warning btn-sm' id='UniProt_UniRef90' form='' $disabled_status>protein</button></td>";
             } else {
-                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_90' onclick=\"synchronize_uniref('UniRef_90','" . $uniref_species ["UniProt_UniRef90"] . "','" . $uniref_release["UniProt_UniRef90"] . "','" . $uniref_description ["UniProt_UniRef90"] . "','" . $uniref_link ["UniProt_UniRef90"] . "');\" form='' $disabled_status>protein</button></td>";
+                echo "	<td><button class='btn btn-primary btn-sm' id='UniProt_UniRef90' onclick=\"synchronize_uniref('UniProt_UniRef90','" . $uniref_species ["UniProt_UniRef90"] . "','" . $uniref_release["UniProt_UniRef90"] . "','" . $uniref_description ["UniProt_UniRef90"] . "','" . $uniref_link ["UniProt_UniRef90"] . "');\" form='' $disabled_status>protein</button></td>";
             }
             ?>
             <td>Dataset of 83,681,116 proteins sequences.<br>
@@ -402,16 +403,15 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
             </td>
         </tr>
 
-
         <tr>
             <td>UniProt_UniRef50</td>
             <?php
             if (in_array("UniProt_UniRef50", $blast_db_array)) {
-                echo "	<td><button class='btn btn-success btn-sm' id='UniRef_50' form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-success btn-sm' id='UniProt_UniRef50' form='' ".$disabled_status.">protein</button></td>";
             } else if (in_array("UniProt_UniRef50", $computing_blast_db_array)) {
-                echo "	<td><button class='btn btn-warning btn-sm' id='UniRef_50' form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-warning btn-sm' id='UniProt_UniRef50' form='' ".$disabled_status.">protein</button></td>";
             } else {
-                echo "	<td><button class='btn btn-primary btn-sm' id='UniRef_50' onclick=\"synchronize_uniref('UniRef_50','" . $uniref_species ["UniProt_UniRef50"] . "','" . $uniref_release["UniProt_UniRef50"] . "','" . $uniref_description ["UniProt_UniRef50"] . "','" . $uniref_link ["UniProt_UniRef50"] . "');\" form='' ".$disabled_status.">protein</button></td>";
+                echo "	<td><button class='btn btn-primary btn-sm' id='UniProt_UniRef50' onclick=\"synchronize_uniref('UniProt_UniRef50','" . $uniref_species ["UniProt_UniRef50"] . "','" . $uniref_release["UniProt_UniRef50"] . "','" . $uniref_description ["UniProt_UniRef50"] . "','" . $uniref_link ["UniProt_UniRef50"] . "');\" form='' ".$disabled_status.">protein</button></td>";
             }
             ?>
             <td>Dataset of 31,036,088 protein sequences.<br>
@@ -547,9 +547,7 @@ $ensembl_desc ["xiphophorus maculatus"] = "20,379 coding and 372 non-coding RNAs
 
 <!--
 <script>
-$('#annotform > div:nth-child(5) > div.div-border > div > div:nth-child(1) > div.btn-group > button').click()
-$('#functional_services_container > div:nth-child(1) > div.btn-group > button').click()
-setExemple(1)
+$(".btn-primary").click()
 </script>
 -->
 

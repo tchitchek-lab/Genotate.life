@@ -113,7 +113,7 @@ function create_cmd($analysis_id, $connexion)
     } else {
         $request .= "'" . $_POST ['orf_min_size'] . "', ";
     }
-    if (empty ($_POST ['checkbox_checkORF'])) {
+    if (empty ($_POST ['checkbox_compute_CPAT'])) {
         $request .= "'0', ";
     } else {
         $request .= "'1', ";
@@ -184,7 +184,7 @@ function create_cmd_options($PARALLEL_REGIONS, $PARALLEL_ANNOTATIONS, $PARALLEL_
     } else {
         $options .= " -orf_min_size 0";
     }
-    if (!empty ($_POST ['checkbox_checkORF'])) {
+    if (!empty ($_POST ['checkbox_compute_CPAT'])) {
         $options .= " -checkORF -checkORF_threshold " . $_POST ['checkORF_threshold'];
     }
     if (!empty ($_POST ['start_codon'])) {

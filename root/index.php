@@ -12,7 +12,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/includes/tooltips.php');
 $connexion = connect_database();
 
 $paths = read_configfile();
-define("USER_MODE", "restricted");
+$paths['USER_MODE'] = "normal";
 
 ?>
 
@@ -48,9 +48,47 @@ define("USER_MODE", "restricted");
 </head>
 <body id="body">
 
-<?php
-include($_SERVER['DOCUMENT_ROOT'] . "/root/includes/menu_admin.php");
-?>
+<div id="header" >
+    <div id="header" style="float: none;display:block;max-width:60em;margin: 0px auto;">
+        <a class="header_genotate" href='/root'>Genotate</a>
+        <a class="header_link" href="/root/index.php?page=manage_annotations">Manage annotations</a>
+        <li class="dropdown"><a href="#" class="header_dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">Homology references<span
+                        style='margin-left:7px;' class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <a class="header_dropdown_link" href="/root/index.php?page=create_reference">Create reference</a>
+                <a class="header_dropdown_link" href="/root/index.php?page=manage_references">Manage references</a>
+                <a class="header_dropdown_link" href="/root/index.php?page=import_references">Import references</a>
+            </ul>
+        </li>
+        <li class="dropdown"><a href="#" class="header_dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">Configuration<span style='margin-left:7px;'
+                                                                                              class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <a class="header_dropdown_link" href="/root/index.php?page=configure_platform">Platform
+                    configuration<span class="sr-only"/></a>
+                <a class="header_dropdown_link" href="/root/index.php?page=configure_database">Database
+                    configuration<span class="sr-only"/></a>
+            </ul>
+        </li>
+
+        <li class="dropdown" style="float:right"><a href="#" class="header_dropdown-toggle" data-toggle="dropdown"
+                                                    role="button"
+                                                    aria-haspopup="true" aria-expanded="false">Help<span
+                        style='margin-left:7px;'
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <a class="header_dropdown_link" href="/root/index.php?page=tutorial">Tutorial<span
+                            class="sr-only"/></a>
+                <a class="header_dropdown_link" href="/root/index.php?page=about">About<span class="sr-only"/></a>
+            </ul>
+            <a style="vertical-align: middle;float:right;font-size:16px;background-color:black;height:40px;width:40px;padding:10px;"
+               href="/index.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+        </li>
+
+
+    </div>
+</div>
 
 <div id="content_scroll">
     <script>
@@ -78,7 +116,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/root/includes/menu_admin.php");
         <div id="content-top-margin" style='width:100%;height:0;padding:15px;'></div>
 
         <?php
-        if (USER_MODE == "restricted") {
+        if ($paths['USER_MODE'] == "restricted") {
             echo '<div class="alert alert-warning" style="width:100%">';
             echo 'You are running Genotate in a restricted administration mode. None of your modification will be commited.';
             echo '</div>';
@@ -87,18 +125,18 @@ include($_SERVER['DOCUMENT_ROOT'] . "/root/includes/menu_admin.php");
 
         <?php
         $PAGES = array();
-        $PAGES['home'] = '/root/pages/home.php';
-        $PAGES['manage_annotations'] = '/root/pages/manage_annotations.php';
-        $PAGES['manage_annotation_details'] = '/root/pages/manage_annotation_details.php';
-        $PAGES['create_reference'] = '/root/pages/create_reference.php';
-        $PAGES['manage_references'] = '/root/pages/manage_references.php';
-        $PAGES['manage_reference_details'] = '/root/pages/manage_reference_details.php';
-        $PAGES['view_annotations'] = '/root/pages/view_annotations.php';
-        $PAGES['import_references'] = '/root/pages/import_references.php';
-        $PAGES['configure_database'] = '/root/pages/configure_database.php';
-        $PAGES['configure_platform'] = '/root/pages/configure_platform.php';
-        $PAGES['about'] = '/root/pages/about.php';
-        $PAGES['tutorial'] = '/root/pages/tutorial.php';
+        $PAGES['home'] = '/admin/pages/home.php';
+        $PAGES['manage_annotations'] = '/admin/pages/manage_annotations.php';
+        $PAGES['manage_annotation_details'] = '/admin/pages/manage_annotation_details.php';
+        $PAGES['create_reference'] = '/admin/pages/create_reference.php';
+        $PAGES['manage_references'] = '/admin/pages/manage_references.php';
+        $PAGES['manage_reference_details'] = '/admin/pages/manage_reference_details.php';
+        $PAGES['view_annotations'] = '/admin/pages/view_annotations.php';
+        $PAGES['import_references'] = '/admin/pages/import_references.php';
+        $PAGES['configure_database'] = '/admin/pages/configure_database.php';
+        $PAGES['configure_platform'] = '/admin/pages/configure_platform.php';
+        $PAGES['about'] = '/admin/pages/about.php';
+        $PAGES['tutorial'] = '/admin/pages/tutorial.php';
 
         $page = "";
         if (isset($_GET ['page'])) {
@@ -107,7 +145,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/root/includes/menu_admin.php");
         if (array_key_exists($page,$PAGES)) {
             include($_SERVER['DOCUMENT_ROOT'] . $PAGES[$page]);
         } else {
-            include($_SERVER['DOCUMENT_ROOT'] . "/root/pages/home.php");
+            include($_SERVER['DOCUMENT_ROOT'] . "/admin/pages/home.php");
         }
         ?>
 

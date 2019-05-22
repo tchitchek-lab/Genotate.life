@@ -11,7 +11,7 @@
     </p>
 
 
-    <div style='width: 420px; margin: 0;padding: 0 5px 5px 0;height: 300px;'>
+    <div style='width: 420px; margin: 0;padding: 0 5px 5px 0;height: 310px;'>
         <div class="div-border-title">
             Transcript sequences
             <a style='float:right;margin-right:10px;' data-toggle="tooltip" data-placement="top"
@@ -19,7 +19,7 @@
                title="<?php echo $tooltip_text['transcripts_panel']; ?>">
                 <img src="/img/tutorial.svg" style='margin-bottom: 2px;height: 20px; filter: invert(90%);'></a>
         </div>
-        <div class="div-border" style='padding:5px;height: 260px;'>
+        <div class="div-border" style='padding:5px;height: 270px;'>
             <div class="form-group row" style="width: 100%;">
                 <input data-toggle="tooltip" data-placement="top"
                        title="<?php echo $tooltip_text['transcript_sequence_file']; ?>" type="button"

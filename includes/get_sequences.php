@@ -2,7 +2,7 @@
 
 function get_regions($name, $analysis_id, $transcript_name, $relative_region_id)
 {
-    $path = $_SERVER['DOCUMENT_ROOT'] . "../workspace/storage/{$analysis_id}/regions_nucl_id.fasta";
+    $path = $_SERVER['DOCUMENT_ROOT'] . "/../workspace/storage/{$analysis_id}/regions_nucl_id.fasta";
     if (!file_exists($path)) {
         die ("File not found $path");
     }
@@ -33,7 +33,7 @@ function get_regions($name, $analysis_id, $transcript_name, $relative_region_id)
 
 function get_transcripts($name, $analysis_id, $transcript_name, $relative_transcript_id)
 {
-    $path = $_SERVER['DOCUMENT_ROOT'] . "../workspace/storage/".$analysis_id."/transcripts.fasta";
+    $path = $_SERVER['DOCUMENT_ROOT'] . "/../workspace/storage/".$analysis_id."/transcripts.fasta";
 
     if (!file_exists($path)) {
         die ("File not found $path");
@@ -65,7 +65,7 @@ function get_transcripts($name, $analysis_id, $transcript_name, $relative_transc
 
 function get_proteins($name, $analysis_id, $transcript_name, $relative_region_id)
 {
-    $path = $_SERVER['DOCUMENT_ROOT'] . "../workspace/storage/{$analysis_id}/regions_prot_id.fasta";
+    $path = $_SERVER['DOCUMENT_ROOT'] . "/../workspace/storage/{$analysis_id}/regions_prot_id.fasta";
     if (!file_exists($path)) {
         die ("File not found $path");
     }

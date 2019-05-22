@@ -14,5 +14,5 @@ DIR_TMP:/var/www/genotate.life/tmp
 DIR_WORKSPACE:/var/www/genotate.life/workspace
 GENOTATE:/var/www/genotate.life/binaries/genotate.jar
 GENOTATE_CONFIG:/var/www/genotate.life/binaries/genotate.config
-JAVA:/var/www/genotate.life/services/javajdk/bin/java
+JAVA:/usr/bin/java
 ?>

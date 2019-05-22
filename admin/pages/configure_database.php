@@ -5,13 +5,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/config_file.php");
 <script src='/admin/js/configure_database.js' xmlns:right></script>
 
 <?php
-$disabled_status = "";
-if (USER_MODE == "restricted") {
-    $disabled_status = "disabled";
-}
-?>
-
-<?php
 if (!empty ($_POST ['database']) && !empty ($_POST ['host']) && !empty ($_POST ['login']) && !empty ($_POST ['pass'])) {
 
     $host = $_POST ['host'];
@@ -24,7 +17,7 @@ if (!empty ($_POST ['database']) && !empty ($_POST ['host']) && !empty ($_POST [
         if ($mysqli->connect_error) {
             die ("connection with new login failed: " . $connexion->connect_error);
         }
-        $target_file = $_SERVER['DOCUMENT_ROOT'] . "../workspace/config/database.config";
+        $target_file = $_SERVER['DOCUMENT_ROOT'] . "/../workspace/config/database.config";
         $text = "database:$database\nhost:$host\nuser:$login\npwd:$pass\n";
         file_put_contents($target_file, $text) or die ("$target_file not  writable");
         include($_SERVER['DOCUMENT_ROOT'] . "/admin/includes/manage_database.php");
@@ -41,7 +34,12 @@ if (!empty ($_POST ['database']) && !empty ($_POST ['host']) && !empty ($_POST [
     }
 }
 
-$file_path = $_SERVER['DOCUMENT_ROOT'] . "../workspace/config/database.config";
+$status = "";
+if ($paths['USER_MODE'] == "restricted") {
+    $status = "disabled";
+}
+
+$file_path = $_SERVER['DOCUMENT_ROOT'] . "/../workspace/config/database.config";
 $configfile = fopen($file_path, "r");
 while (!feof($configfile)) {
     $line = fgets($configfile);
@@ -102,32 +100,32 @@ $database = preg_replace("/\r|\n/", "", $database);
         <div style="width: 100%;">
             <label>host</label>
             <input type='text' id='host' name='host' title='host' style='width: 100%; height: 2em; float: right;'
-                   value='<?php echo $host; ?>' <?php echo $disabled_status; ?> >
+                   value='<?php echo $host; ?>' <?php echo $status; ?> >
         </div>
         <div style="width: 100%;">
             <label>login</label>
             <input type='text' id='login' name='login' title='login' style='width: 100%; height: 2em; float: right;'
-                   value='<?php echo $user; ?>' <?php echo $disabled_status; ?> >
+                   value='<?php echo $user; ?>' <?php echo $status; ?> >
         </div>
         <div style="width: 100%; margin-bottom: 5px;">
             <label>password</label>
             <input type='password' id='pass' name='pass' title='pass'
-                   style='width: 100%; height: 2em; float: right;' <?php echo $disabled_status; ?> >
+                   style='width: 100%; height: 2em; float: right;' <?php echo $status; ?> >
         </div>
         <div style="width: 100%; margin-bottom: 5px;">
             <label>database name</label>
             <input type='text' id='database' name='database' title='database'
                    style='width: 100%; height: 2em; float: right;'
-                   value='<?php echo $database; ?>' <?php echo $disabled_status; ?> >
+                   value='<?php echo $database; ?>' <?php echo $status; ?> >
         </div>
     </div>
     <button type='submit' class='btn btn-secondary active'
-            style='width: 100%; font-size: 1.3em; margin-top: 5px; margin-bottom: 5px;' <?php echo $disabled_status; ?> >
+            style='width: 100%; font-size: 1.3em; margin-top: 5px; margin-bottom: 5px;' <?php echo $status; ?> >
         update database information
     </button>
 </form>
 <button type='button' class='btn btn-danger' style='width: 100%; font-size: 1.3em;'
-        onclick='database_reset();' <?php echo $disabled_status; ?> >reset the Genotate
+        onclick='database_reset();' <?php echo $status; ?> >reset the Genotate
     database
 </button>
 

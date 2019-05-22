@@ -150,9 +150,9 @@ $path_includes = "";
         }
 
         if ($region_coding == "coding") {
-            echo "<div class='div-border-title'>$region_type coding ORF of " . number_format($region_size, 0, '.', ',') . " bases on transcript " . substr($transcript_name, 0, 15) . " ({$region_strand_text} strand) ";
+            echo "<div class='div-border-title'>$region_type coding transcript - ORF of " . number_format($region_size, 0, '.', ',') . " bases ({$region_strand_text} strand) ";
         } else {
-            echo "<div class='div-border-title' style='background-color:grey;'>potential non-coding RNA of " . number_format($region_size, 0, '.', ',') . " bases on transcript " . substr($transcript_name, 0, 15) . " ({$region_strand_text} strand) ";
+            echo "<div class='div-border-title' style='background-color:grey;'>non-coding RNA of " . number_format($region_size, 0, '.', ',') . " bases ({$region_strand_text} strand) ";
         }
         echo "<button onclick=\"viewer('$region_id',$('#region_viewer_$region_id').width(),$('#region_viewer_$region_id').height()+100);\" class='btn btn-sm btn-info' style='height:30px;width:30px;border:none;float:right;color: #fff;font-size:15px;'><span class='glyphicon glyphicon-resize-full' aria-hidden='true'></span></button>";
         echo "</div>";

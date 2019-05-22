@@ -121,7 +121,6 @@ if (!empty($_POST)) {
     echo "<div id='results_header_div' style='width:100%;margin-bottom:10px;'>";
     page_bar($activepage, $windownumberpage);
   
-  
     echo "<div style='float:right;line-height:30px;height:40px;border:1px solid lightgrey;padding:5px;border-radius:5px;'>";
     echo "<div class='btn-group'> ";
     echo "<span data-toggle='tooltip' data-placement='top' title='{$tooltip_text['coding_only_filter']}'><label class='btn btn-default";
@@ -129,13 +128,19 @@ if (!empty($_POST)) {
     echo "' onclick=\"$('#coding_only_filter').val(! {$_POST ['coding_only_filter']});reloadphp_div(" . 1 . ");\">coding only</label></span>";
     echo "<span data-toggle='tooltip' data-placement='top' title='{$tooltip_text['noncoding_only_filter']}'><label class='btn btn-default";
     if ($_POST ['noncoding_only_filter'] == 'true') { echo ' active';}
-    echo "' onclick=\"$('#noncoding_only_filter').val(! {$_POST ['noncoding_only_filter']});reloadphp_div(" . 1 . ");\"  style=''>noncoding only</label></span>";
+    echo "' onclick=\"$('#noncoding_only_filter').val(! {$_POST ['noncoding_only_filter']});reloadphp_div(" . 1 . ");\"  style=''>non-coding only</label></span>";
     echo "<span data-toggle='tooltip' data-placement='top' title='{$tooltip_text['annotated_only_filter']}'><label class='btn btn-default";
     if ($_POST ['annotated_only_filter'] == 'true') { echo ' active';}
     echo "' onclick=\"$('#annotated_only_filter').val(! {$_POST ['annotated_only_filter']});reloadphp_div(" . 1 . ");\"  style=''>annotated only</label></span>";
     echo "</div>";
     echo "</div>";
-  
+  ?>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'});
+    })
+</script>
+<?php
     echo "<div style='display:none;line-height:30px;float:right;height:40px;border:1px solid lightgrey;padding:5px;'>";
     echo "<label style='margin-right:5px;'>order by</label>";
     echo "<div class='btn-group' style='float:right;'>";

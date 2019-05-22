@@ -1,5 +1,10 @@
 <?php
+
+include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/tooltips.php");
+
 function display_annotation_results($row){
+include($_SERVER['DOCUMENT_ROOT'] . "/includes/tooltips.php");
+
 
     ?>
 
@@ -15,7 +20,9 @@ function set_analysis_permanent(analysis_id){
 <br>You can see below the annotation results for your submitted dataset. An annotation sequence viewer is available for each detected ORF or potential ncRNA to represent the positions of identifed functional and homology annotations.
 <br>
 <br>
-<label class='btn btn-default <?php if($row['is_permanent'] == 1){echo 'active';} ?>' style ='float:left;width:100%;' onclick="set_analysis_permanent('<?php echo $row['analysis_id']; ?>');this.classList.add('active');">Keep the results permanently available</label>
+<label data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['keep_permanent']; ?>" 
+ class='btn btn-default <?php if($row['is_permanent'] == 1){echo 'active';} ?>' style ='float:left;width:100%;' 
+ onclick="set_analysis_permanent('<?php echo $row['analysis_id']; ?>');this.classList.add('active');">Keep the results permanently available</label>
 <br>
 <br>
 <form action='/index.php?page=view_annotations&encoded_id=<?php echo $_GET['encoded_id']; ?>' method='post' id='search' name='search'>

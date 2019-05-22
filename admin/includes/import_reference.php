@@ -14,7 +14,7 @@ function insert_reference($db_name, $description, $type, $species, $release, $co
 function get_file_ftp($tmp_dir, $ftp)
 {
     $target_file_gz = $tmp_dir."/".str_shuffle(dechex(date("YmdHis"))).".fasta.gz";
-    exec("wget -O $target_file_gz $ftp -P $tmp_dir > {$target_file_gz}.log");
+    exec("wget -O $target_file_gz $ftp -P $tmp_dir 2> /dev/null");
     return $target_file_gz;
 }
 
@@ -48,7 +48,7 @@ function get_file_ftp_ensembl($tmp_dir, $ftp)
 
 function unzip_file($target_file_gz)
 {
-    exec("gunzip " . $target_file_gz. " >> {$target_file_gz}.log");
+    exec("gunzip " . $target_file_gz);
     $target_file = str_replace(".gz", "", $target_file_gz);
     return $target_file;
 }
@@ -67,7 +67,7 @@ function update_reference_size($size, $id, $connexion)
 
 function run_makedb($makeblastdb, $target_file, $blastdbdir, $id, $type)
 {
-    $cmd = "$makeblastdb -in $target_file -out {$blastdbdir}/{$id} > {$target_file}.log";
+    $cmd = "$makeblastdb -in $target_file -out {$blastdbdir}/{$id}";
     if ($type == 'nucleic') {
         $cmd .= " -dbtype nucl";
     } else {
@@ -91,7 +91,7 @@ function update_reference_status($id, $connexion)
 
 $connexion = connect_database();
 
-$tmp_dir = $_SERVER['DOCUMENT_ROOT'] . "../tmp/";
+$tmp_dir = $_SERVER['DOCUMENT_ROOT'] . "/../tmp";
 $paths = read_configfile();
 $makeblastdb = $paths['BLAST'];
 $blastdbdir = $paths['BLASTDB'];

@@ -8,7 +8,7 @@
     <p style='text-align: justify; text-justify: inter-word;'>
         For a provided transcript sequence, Genotate first detects all the possible Open Reading Frames (ORF). The sequence of each detected ORF is then translated to obtain the sequence of the associated encoded protein. Using public reference databases and bioinformatics algorithms, Genotate predicts homology and functional annotations for each ORF sequence and associated protein. On the one hand, Genotate predicts homology annotations based on transcriptomic and proteomic references. On the other hand, Genotate predicts functional annotations on the associated protein based on several algorithms and databases (such as conserved domains, protein family, primary and secondary structure, ...).
     </p>
-    <div style='width: 420px; margin: 0;padding: 0 5px 5px 0;height: 300px;'>
+    <div style='width: 420px; margin: 0;padding: 0 5px 5px 0;height: 310px;'>
         <div class="div-border-title">
             Transcript sequence
             <a style='float:right;margin-right:10px;' data-toggle="tooltip" data-placement="top"
@@ -16,11 +16,11 @@
                title="<?php echo $tooltip_text['transcript_panel']; ?>">
                 <img src="/img/tutorial.svg" style='margin-bottom: 2px;height: 20px; filter: invert(90%);'></a>
         </div>
-        <div class='div-border' style='padding:5px;height: 260px;'>
+        <div class='div-border' style='padding:5px;height: 270px;'>
             <div style="width: 100%;">
 
                 <?php
-                $file_path = $_SERVER['DOCUMENT_ROOT'] . "./fasta_examples/sequence_1.fasta";
+                $file_path = $_SERVER['DOCUMENT_ROOT'] . "/fasta_examples/sequence_1.fasta";
                 if (file_exists($file_path)) {
                     $seq1 = file_get_contents($file_path);
                     echo "<input type='hidden' value='$seq1' id='seq1'>";

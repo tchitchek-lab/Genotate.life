@@ -5,13 +5,11 @@ $tooltip_text ['keyword_filter'] = "Provide here some annotation filtering crite
 $tooltip_text ['start_codon'] = "codon(s) used to define the begin of an ORF";
 $tooltip_text ['stop_codon'] = "codon(s) used to define the end of an ORF";
 $tooltip_text ['orf_min_size'] = "keep only ORFs with a length higher than a specific threshold";
-
 $tooltip_text ['checkORF'] = "keep only ORFs with a CPAT coding potential higher than a specific threshold";
-
 $tooltip_text ['coding_only_filter'] = "filter to display only conding transcripts";
 $tooltip_text ['noncoding_only_filter'] = "filter to display only non-coding transcripts";
 $tooltip_text ['annotated_only_filter'] = "filter to display only annotated transcripts";
-
+$tooltip_text ['keep_permanent'] = "Analysis results remain available for 2 days after computations. By using the functionality your analysis results will remain permanently available.";
 $tooltip_text ['inner'] = "an inner ORF is an ORF contained in larger ORF";
 $tooltip_text ['outside'] = "an outside ORF lacks either the start or stop codon";
 $tooltip_text ['compute_ncRNA'] = "keep transcripts without ORF (such as ncRNA)";
@@ -43,6 +41,10 @@ $tooltip_text ['database_configuration'] = "Define here the Genotate database an
 
 $tooltip_text ['annotated_only'] = "select only transcripts having at least one annotation";
 
+$tooltip_text ['compute_CPAT'] = "use the CPAT algorithm to detect the coding transcript and keep the longest ORF";
+$tooltip_text ['compute_allORFs'] = "identify the ORF using the selected criteria and an explicit approach";
+
+
 $tooltip_text ['create_reference'] = "Homology references can be created using either nucleic or proteomic sequences";
 $tooltip_text ['reference_file'] = "provide a fasta file containing transcriptomic or proteomic sequences";
 $tooltip_text ['reference_ftp'] = "provide an ftp link to a fasta file containing transcriptomic or proteomic sequences";
@@ -64,6 +66,8 @@ $tooltip_text ['genotate_config'] = "Please refer to Genotate github installatio
 $tooltip_text ['NONCODE'] = "NONCODE is an annotation collection for non-coding RNAs, especially long non-coding RNAs (lncRNAs)";
 $tooltip_text ['UNIREF'] = "UniRef databases provide full-scale clustering of UniProtKB sequences and are utilized for a broad range of applications, particularly similarity-based functional annotation";
 $tooltip_text ['ENSEMBL'] = "Ensembl's provide a centralized resource for geneticists, molecular biologists and other researchers studying the genomes of vertebrates and model organisms. Ensembl is one of several well known genome browsers for the retrieval of genomic information.";
+$tooltip_text ['NCBI'] = "";
+
 
 $tooltip_text ['dataset_info'] = "Provide informations on the transcript dataset and the computed annotations";
 $tooltip_text ['transcript_sequence_input'] = "insert the nucleic sequence of the transcript you want to annotate (no more than 200,000 bases)";
