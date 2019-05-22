@@ -44,75 +44,70 @@ include($_SERVER['DOCUMENT_ROOT'] . "/includes/algorithms_info.php");
 
 
             <div class="btn-group" data-toggle="buttons" style="width: 100%; margin-bottom: 5px;margin-top: 5px;">
-                <label style="width: 40%" class="btn btn-default active" data-toggle="tooltip" data-placement="top"
-                       title="<?php echo $tooltip_text['compute_CPAT']; ?>">
+				<span style="width: 50%;height:30px;"  data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['compute_CPAT']; ?>">
+                <label style="width: 100%" class="btn btn-default active" data-toggle='collapse' data-target='#collapse_CPAT' data-parent="#accordion" aria-expanded='false' aria-controls='collapse_$id'>
                     ORF detection by CPAT
-                    <input id="checkbox_compute_CPAT" name="checkbox_compute_CPAT" type='radio' style='display: none' checked>
+                    <input id="checkbox_compute_CPAT" name="checkbox_orf" value="compute_CPAT" type='radio' checked style="display:none;">
                 </label>
-				<button style='width:10%;' class='btn btn-default' type='button' data-toggle='collapse' data-target='#collapse_CPAT' aria-expanded='false' aria-controls='collapse_$id'><span class='caret'></span></button>
-                <label style="width: 40%;" class="btn btn-default" data-toggle="tooltip" data-placement="top"
-                       title="<?php echo $tooltip_text['compute_allORFs']; ?>">
-                    custom ORFs detection
-                    <input class="btn btn-default" id='checkbox_custom_ORF' name='checkbox_custom_ORF' type='radio'>
+				</span>
+				<span style="width: 50%;height:30px;float:right;" data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['compute_allORFs']?>";>
+                <label style="width: 100%;" class="btn btn-default" data-toggle='collapse' data-target='#collapse_ORF_FINDER' data-parent="#accordion" aria-expanded='false' aria-controls='collapse_$id'>
+				custom ORFs detection
+                    <input id='checkbox_custom_ORF' name='checkbox_orf' value="custom_ORF" type='radio' style="display:none;">
                 </label>
-				<button style='width:10%;' class='btn btn-default' type='button' data-toggle='collapse' data-target='#collapse_ORF_FINDER' aria-expanded='false' aria-controls='collapse_$id'><span class='caret'></span></button>
+				</span>
             </div>
 			
-			<div class='collapse' id='collapse_CPAT' style='width:100%;'>
+			<div class="panel-group" id="accordion" style='margin:0;padding:0;width:100%;'>
+			<div class="panel panel-default" style='width:100%;'><div class='panel-collapse collapse in' id='collapse_CPAT' style='width:100%;'>
+				<div data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['checkORF']; ?>" style="width: 100%;">
+					<div class="input-group" style="padding: 0; margin: 0;width: 50%; height: 30px;">
+						<label data-toggle='buttons' style="width: 100%; height: 30px;" class="btn btn-default active" type="button" for='checkORF_checkbox'>
+							minimal ORF coding potential
+							<input type="checkbox" id="checkbox_checkORF" name="checkbox_checkORF" style='display: none;' checked>
+						</label>
+					</div>
+					<div class="input-group" style="padding: 0; margin: 0;width: 50%; height: 30px;">
+						<input class="form-control" type="number" id="checkORF_threshold" name="checkORF_threshold" min="0"
+							   max="1" step='0.01'
+							   value="0.5" style="width: 100%; height: 30px; text-align: right; float: right"
+							   title="checkORF_threshold">
+						<span class='input-group-addon' style='padding-top: 0; padding-bottom: 0; width: 75px;'>percent</span>
+					</div>
+				</div>
+			</div></div>
+			<div class="panel panel-default" style='width:100%;'><div class='panel-collapse collapse' id='collapse_ORF_FINDER' style='width:100%;'>
+				<div data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['orf_min_size']; ?>"style="width: 100%;">
+					<div class="input-group" style="padding: 0; margin: 0;width: 50%; height: 30px;">
+						<label data-toggle='buttons' style="width: 100%; height: 30px;" class="btn btn-default active" type="button" for='orf_min_size_checkbox'>
+							minimal ORF length
+							<input type="checkbox" id="checkbox_orf_min_size" name="checkbox_orf_min_size" style='display: none;' checked>
+						</label>
+					</div>
+					<div class="input-group" style="padding: 0; margin: 0;width: 50%; height: 30px;">
+						<input class="form-control" type="number" id="orf_min_size" name="orf_min_size" min="6" max="9999999"
+							   value="300" style="width: 100%; height: 30px; text-align: right; float: right"
+							   title="orf_min_size">
+						<span class='input-group-addon' style='padding-top: 0; padding-bottom: 0; width: 75px;'>bases</span>
+					</div>
+				</div>
 
-        <div data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['checkORF']; ?>"
-             style="width: 100%;">
-            <div class="input-group" style="padding: 0; margin: 5px 0 0;width: 50%; height: 30px;">
-                <label data-toggle='buttons' style="width: 100%; height: 30px;" class="btn btn-default active"
-                       type="button" for='checkORF_checkbox'>
-                    minimal ORF coding potential
-                    <input type="checkbox" id="checkbox_checkORF" name="checkbox_checkORF" style='display: none;'
-                           checked>
-                </label>
-            </div>
-            <div class="input-group" style="padding: 0; margin: 5px 0 0;width: 50%; height: 30px;">
-                <input class="form-control" type="number" id="checkORF_threshold" name="checkORF_threshold" min="0"
-                       max="1" step='0.01'
-                       value="0.5" style="width: 100%; height: 30px; text-align: right; float: right"
-                       title="checkORF_threshold">
-                <span class='input-group-addon' style='padding-top: 0; padding-bottom: 0; width: 75px;'>percent</span>
-            </div>
-        </div>
-		</div>
-		<div class='collapse' id='collapse_ORF_FINDER' style='width:100%;'>
-        <div data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['orf_min_size']; ?>"
-             style="width: 100%;">
-            <div class="input-group" style="padding: 0; margin: 5px 0 0;width: 50%; height: 30px;">
-                <label data-toggle='buttons' style="width: 100%; height: 30px;" class="btn btn-default active"
-                       type="button" for='orf_min_size_checkbox'>
-                    minimal ORF length
-                    <input type="checkbox" id="checkbox_orf_min_size" name="checkbox_orf_min_size"
-                           style='display: none;' checked>
-                </label>
-            </div>
-            <div class="input-group" style="padding: 0; margin: 5px 0 0;width: 50%; height: 30px;">
-                <input class="form-control" type="number" id="orf_min_size" name="orf_min_size" min="6" max="9999999"
-                       value="300" style="width: 100%; height: 30px; text-align: right; float: right"
-                       title="orf_min_size">
-                <span class='input-group-addon' style='padding-top: 0; padding-bottom: 0; width: 75px;'>bases</span>
-            </div>
-        </div>
-
-        <div style="width: 100%; padding: 0; margin: 5px 0;">
-			<span data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['inner']; ?>"
-                  style="width: 50%; float: left;"> <label data-toggle='buttons' class='btn btn-default' for="inner_orf"
-                                                           style="width: 100%;">
-					<input type="checkbox" id="inner_orf" name="inner_orf" style='display: none;'>
-					compute inner ORFs
-				</label>
-			</span> <span data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['outside']; ?>"
-                          style="width: 50%; float: left;"> <label data-toggle='buttons' class='btn btn-default'
-                                                                   for="outside_orf" style="width: 100%;">
-					<input type="checkbox" id="outside_orf" name="outside_orf" style='display: none;'>
-					compute outside ORFs
-				</label>
-			</span>
-        </div>
+				<div style="width: 100%; padding: 0; margin: 5px 0;">
+					<span data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['inner']; ?>"
+						  style="width: 50%; float: left;"> <label data-toggle='buttons' class='btn btn-default' for="inner_orf"
+																   style="width: 100%;">
+							<input type="checkbox" id="inner_orf" name="inner_orf" style='display: none;'>
+							compute inner ORFs
+						</label>
+					</span> <span data-toggle="tooltip" data-placement="top" title="<?php echo $tooltip_text['outside']; ?>"
+								  style="width: 50%; float: left;"> <label data-toggle='buttons' class='btn btn-default'
+																		   for="outside_orf" style="width: 100%;">
+							<input type="checkbox" id="outside_orf" name="outside_orf" style='display: none;'>
+							compute outside ORFs
+						</label>
+					</span>
+				</div>
+			</div></div>
 		</div>
         <div style="width: 100%; padding: 0; margin: 0;margin-top:5px;">
             <span data-toggle="tooltip" data-placement="top"
